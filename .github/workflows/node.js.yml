@@ -11,25 +11,38 @@ on:
 
 jobs:
   build:
-
+    # Specify runner +  build & upload the static files as an artifact
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build static files
+        uses: actions/setup-node@v4
+        width:
+          node-version: 22.x
+          cache: 'npm'
+        id: build
+        run: |
+          npm install
+          npm run build
 
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+        with:
+          path: dist/
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
     strategy:
       matrix:
         node-version: [ 22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm run build
-    - uses: actions/upload-artifact@v4
-      with:
-        name: SwordWeirdoDist
-        path: dist/ # or path/to/artifact
-#    - run: npm test
