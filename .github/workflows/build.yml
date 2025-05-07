@@ -17,8 +17,13 @@ jobs:
       run: |
         npm install
         npm run build
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
     - name: Upload static files as artifact
-      id: deployment
+      id: uploadPages
       uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
       with:
         path: dist/    
+    - name: Deploy to GitHub Pages
+      id: deploypages
+      uses: actions/deploy-pages@v4
