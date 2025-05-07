@@ -1,0 +1,2239 @@
+{
+    "stats": {
+        "speed": [
+            {
+                "level": 1,
+                "pts": 0
+            },
+            {
+                "level": 2,
+                "pts": 1
+            },
+            {
+                "level": 3,
+                "pts": 3
+            }
+        ],
+        "defense": [
+            {
+                "level": 1,
+                "dice": "2d6",
+                "pts": 2
+            },
+            {
+                "level": 2,
+                "dice": "2d8",
+                "pts": 4
+            },
+            {
+                "level": 3,
+                "dice": "2d10",
+                "pts": 8,
+                "restriction": true
+            }
+        ],
+        "might": [
+            {
+                "level": 1,
+                "dice": "2d6",
+                "pts": 2
+            },
+            {
+                "level": 2,
+                "dice": "2d8",
+                "pts": 4
+            },
+            {
+                "level": 3,
+                "dice": "2d10",
+                "pts": 6,
+                "restriction": true
+            }
+        ],
+        "willpower": [
+            {
+                "level": 1,
+                "dice": "2d6",
+                "pts": 2
+            },
+            {
+                "level": 2,
+                "dice": "2d8",
+                "pts": 4
+            },
+            {
+                "level": 3,
+                "dice": "2d10",
+                "pts": 6
+            }
+        ]
+    },
+    "classes": [
+        {
+            "id": "acrobat",
+            "name": "Acrobat",
+            "pts": 1,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "ranged"
+            ],
+            "effect": "Disengage costs 1 action. If this model ends a Move action next to a climbable piece of terrain, it may move to the top. May jump up to 1 stick gaps. If this model falls, place it upright where it landed."
+        },
+        {
+            "id": "alchemist",
+            "name": "Alchemist",
+            "pts": 1,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple"
+            ],
+            "effect": "Interact actions with flasks or potions cost 1 action"
+        },
+        {
+            "id": "archer",
+            "name": "Archer",
+            "pts": 2,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged"
+            ],
+            "effect": "Bows gain quick.",
+            "short-effect": "",
+            "weapon-mod": [
+                {
+                    "name": "bow",
+                    "add-prop": "quick"
+                }
+            ]
+        },
+        {
+            "id": "assassin",
+            "name": "Assassin",
+            "pts": 2,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "ranged"
+            ],
+            "effect": "Daggers are not weak. +1 to melee Attack Result Table rolls",
+            "short-effect": "+1 to melee Attack Result Table rolls",
+            "weapon-mod": [
+                {
+                    "name": "dagger",
+                    "del-prop": "weak"
+                }
+            ]
+        },
+        {
+            "id": "barbarian",
+            "name": "Barbarian",
+            "pts": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "shields"
+            ],
+            "effect": "+1 to Will rolls. If this model ends a Move action within a ½ stick of an enemy, it may move BtB."
+        },
+        {
+            "id": "beast",
+            "name": "Beast",
+            "pts": 1,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "natural"
+            ],
+            "effect": "Can buy 2d10 Def and Mgt without weapon requirements. Cavalry do not get bonuses to Mgt or Def vs. Beasts. Can move a ½ stick when taking a Stand action. Can not use the Interact action",
+            "short-effect": "Cavalry do not get bonuses to Mgt or Def vs. Beasts. Can move a ½ stick when taking a Stand action. Can not use the Interact action",
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                },
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "berserker",
+            "name": "Berserker",
+            "pts": 2,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "shields"
+            ],
+            "effect": "-1 to Def rolls. Recover actions are automatically successful."
+        },
+        {
+            "id": "cavalry",
+            "name": "Cavalry",
+            "pts": 2,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged",
+                "shields"
+            ],
+            "effect": "+1 to Mgt rolls when making Attacks against a non-Cavalry model. +1 to Def rolls when targeted with a Melee Attack and -1 to Def rolls when targeted by a Ranged Attack from a non- Cavalry model. Cannot climb terrain. Knows the Trample maneuver.",
+            "short-effect": "+1 to Mgt rolls when making Attacks against a non-Cavalry model. +1 to Def rolls when targeted with a Melee Attack and -1 to Def rolls when targeted by a Ranged Attack from a non- Cavalry model. Cannot climb terrain.",
+            "maneuver": [
+                "trample"
+            ]
+        },
+        {
+            "id": "commander",
+            "name": "Commander",
+            "pts": 2,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "shields"
+            ],
+            "effect": "This model may take an Interact action to let any allied model in LoS immediately take a Move, Melee Attack, or Ranged Attack action."
+        },
+        {
+            "id": "druid",
+            "name": "Druid",
+            "pts": 2,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple"
+            ],
+            "effect": "Knows grasping vines spell. Beasts gain a +1 to Mgt rolls when within ½ stick of this model. Sickles are not unwieldy.",
+            "short-effect": "Beasts gain a +1 to Mgt rolls when within ½ stick of this model.",
+            "spells": [
+                "grasping-vines"
+            ],
+            "weapon-mod": [
+                {
+                    "name": "sickles",
+                    "del-prop": "unwieldy"
+                }
+            ]
+        },
+        {
+            "id": "fighter",
+            "name": "Fighter",
+            "pts": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "magical",
+                "material",
+                "natural",
+                "ranged",
+                "shields"
+            ],
+            "effect": "+1 to Mgt rolls"
+        },
+        {
+            "id": "flyer",
+            "name": "Flyer",
+            "pts": 1,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "natural",
+                "ranged"
+            ],
+            "effect": "This model can ignore terrain and other models when taking Move actions."
+        },
+        {
+            "id": "fool",
+            "name": "Fool",
+            "pts": 1,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple"
+            ],
+            "effect": "Knows the Taunt maneuver.",
+            "short-effect": "",
+            "maneuver": [
+                "taunt"
+            ]
+        },
+        {
+            "id": "healer",
+            "name": "Healer",
+            "pts": 1,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "shields"
+            ],
+            "effect": "While BtB with an allied model, use an Interact action to make an unopposed Will roll. A success removes 1 condition, doubling the roll removes 2. Knows holy aura.",
+            "short-effect": "While BtB with an allied model, use an Interact action to make an unopposed Will roll. A success removes 1 condition, doubling the roll removes 2.",
+            "spells": [
+                "holy-aura"
+            ]
+        },
+        {
+            "id": "hunter",
+            "name": "Hunter",
+            "pts": 2,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "ranged"
+            ],
+            "effect": "Targets gain no cover vs. ranged attacks. No shot on the run penalty to ranged attacks."
+        },
+        {
+            "id": "knight",
+            "name": "Knight",
+            "pts": 1,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "shields"
+            ],
+            "effect": "Can buy 2d10 Def without being equipped with a shield. Reroll Def rolls of 1 if equipped with a shield.",
+            "short-effect": "Reroll Def rolls of 1 if equipped with a shield.",
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "magic-user",
+            "name": "Magic User",
+            "pts": 1,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "magical"
+            ],
+            "effect": "Can purchase spells.",
+            "short-effect": "",
+            "max_spell_cost": 2
+        },
+        {
+            "id": "magical-beast",
+            "name": "Magical Beast",
+            "pts": 2,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "natural"
+            ],
+            "effect": "Can purchase spells. Can buy 2d10 Def and Mgt without weapon requirements. Cavalry do not get bonuses to Mgt or Def vs. Magical Beasts.",
+            "short-effect": "Cavalry do not get bonuses to Mgt or Def vs. Magical Beasts.",
+            "max_spell_cost": 2,
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                },
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "martial-artist",
+            "name": "Martial Artist",
+            "pts": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged"
+            ],
+            "effect": "Martial Arts are not weak.",
+            "short-effect": "",
+            "weapon-mod": [
+                {
+                    "name": "material-arts",
+                    "del-prop": "weak"
+                }
+            ]
+        },
+        {
+            "id": "monster",
+            "name": "Monster",
+            "pts": 3,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "natural"
+            ],
+            "effect": "All enemy models within 1 stick have a - 1 penalty to Will rolls. Can buy 2d10 Def and Mgt without weapon requirements.",
+            "short-effect": "All enemy models within 1 stick have a - 1 penalty to Will rolls.",
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                },
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "necromancer",
+            "name": "Necromancer",
+            "pts": 2,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "magical"
+            ],
+            "effect": "Knows unlife. Scythes gain wounding and are not unwieldy.",
+            "short-effect": "",
+            "weapon-mod": [
+                {
+                    "name": "scythe",
+                    "del-prop": "unwieldy"
+                },
+                {
+                    "name": "scythe",
+                    "add-prop": "wounding"
+                }
+            ],
+            "spells": [
+                "unlife"
+            ]
+        },
+        {
+            "id": "pit-fighter",
+            "name": "Pit Fighter",
+            "pts": 1,
+            "limit": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "shields"
+            ],
+            "effect": "Knows the Distract maneuver. Melee Attacks vs. this model never get a Gang-up bonus.",
+            "short-effect": "Melee Attacks vs. this model never get a Gang-up bonus.",
+            "maneuver": [
+                "distract"
+            ]
+        },
+        {
+            "id": "spy",
+            "name": "Spy",
+            "pts": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged"
+            ],
+            "effect": "If this model has cover from an attacker's point of view, the attacker does not have LoS unless they are within 1 stick of the Spy."
+        },
+        {
+            "id": "spell-sword",
+            "name": "Spell Sword",
+            "pts": 1,
+            "limit": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged",
+                "shields"
+            ],
+            "effect": "Can purchase 1 pt. spells.",
+            "short-effect": "",
+            "max_spell_cost": 1
+        },
+        {
+            "id": "swashbuckler",
+            "name": "Swashbuckler",
+            "pts": 2,
+            "weapon-proficiencies": [
+                "simple",
+                "material",
+                "ranged"
+            ],
+            "effect": "Fencing swords are not weak. -1 reload for harquebus and pistolet.",
+            "short-effect": "",
+            "weapon-mod": [
+                {
+                    "name": "fencing-sword",
+                    "del-prop": "weak"
+                },
+                {
+                    "name": "harquebus",
+                    "del-prop": "reload-three"
+                },
+                {
+                    "name": "harquebus",
+                    "add-prop": "reload-two"
+                },
+                {
+                    "name": "pistolet",
+                    "del-prop": "reload-two"
+                },
+                {
+                    "name": "pistolet",
+                    "add-prop": "reload-one"
+                }
+            ]
+        },
+        {
+            "id": "thief",
+            "name": "Thief",
+            "pts": 1,
+            "weapon-proficiencies": [
+                "simple",
+                "ranged"
+            ],
+            "effect": "Interact actions with scenario based objectives or terrain items cost 1 action. Any required rolls for a scenario or terrain based Interact action gain +1dt. -1 reload for 1– handed crossbows",
+            "short-effect": "Interact actions with scenario based objectives or terrain items cost 1 action. Any required rolls for a scenario or terrain based Interact action gain +1dt.",
+            "weapon-mod": [
+                {
+                    "name": "crossbow-onehanded",
+                    "del-prop": "reload-two"
+                },
+                {
+                    "name": "crossbow-onehanded",
+                    "add-prop": "reload-one"
+                }
+            ]
+        },
+        {
+            "id": "wretch",
+            "name": "Wretch",
+            "pts": 0,
+            "weapon-proficiencies": [
+                "simple",
+                "ranged"
+            ],
+            "effect": "Def, Mgt, and Will have a max of 2d6. +2 Mgt with clubs, articulated clubs, fists, torches, and pitchforks.",
+            "short-effect": "+2 Mgt with clubs, articulated clubs, fists, torches, and pitchforks.",
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "disable-level": 2
+                },
+                {
+                    "name": "might",
+                    "disable-level": 2
+                },
+                {
+                    "name": "defense",
+                    "disable-level": 3
+                },
+                {
+                    "name": "might",
+                    "disable-level": 3
+                }
+            ]
+        }
+    ],
+    "weapons": [
+        {
+            "id": "bill-hook",
+            "name": "Bill Hook",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "reach"
+            ],
+            "maneuver": [
+                "drag"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "articulated-club-onehanded",
+            "name": "one handed articulated Club",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "chain"
+            ],
+            "maneuver": [
+                "bellringer"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "articulated-club-twohanded",
+            "name": "two handed articulated Club",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "chain"
+            ],
+            "maneuver": [
+                "bellringer"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "club-onehanded",
+            "name": "one handed Club or Mace",
+            "type": "simple",
+            "hands": 1,
+            "properties": [],
+            "maneuver": [
+                "bellringer"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "club-twohanded",
+            "name": "two handed Club or Mace",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [],
+            "maneuver": [
+                "bellringer"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "dagger",
+            "name": "Dagger",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "quick",
+                "weak"
+            ],
+            "maneuver": [
+                "weak-spot"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "fist",
+            "name": "Fist",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "weak"
+            ],
+            "maneuver": [
+                "Bellringer"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "flask",
+            "name": "Flask",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "burst"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "holy-symbol",
+            "name": "Holy Symbol",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "repel"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "instrument-onehanded",
+            "name": "one handed Instrument",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "inspire"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "instrument-twohanded",
+            "name": "two handed Instrument",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "inspire"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "lantern",
+            "name": "Lantern",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "item",
+                "light"
+            ],
+            "maneuver": [],
+            "pts": 0
+        },
+        {
+            "id": "pitchfork",
+            "name": "Pitchfork",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "unwieldy",
+                "weak"
+            ],
+            "maneuver": [
+                "set"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "poleaxe",
+            "name": "Poleaxe",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "reach"
+            ],
+            "maneuver": [
+                "sweep"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "potion",
+            "name": "Potion",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "cure",
+                "enhance"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "scythe",
+            "name": "Scythe",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "reach",
+                "unwieldy"
+            ],
+            "maneuver": [
+                "sweep"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "sickle",
+            "name": "Sickle",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "wounding",
+                "unwieldy"
+            ],
+            "maneuver": [
+                "weak-spot"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "spear-onehanded",
+            "name": "one handed Spear",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "piercing-plus-one",
+                "reach"
+            ],
+            "maneuver": [
+                "set"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "spear-twohanded",
+            "name": "two handed Spear",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "piercing-plus-one",
+                "reach"
+            ],
+            "maneuver": [
+                "set"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "staff",
+            "name": "Staff",
+            "type": "simple",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "defensive",
+                "quick"
+            ],
+            "maneuver": [
+                "parry",
+                "sweep"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "torch",
+            "name": "Torch",
+            "type": "simple",
+            "hands": 1,
+            "properties": [
+                "light",
+                "weak"
+            ],
+            "maneuver": [
+                "repel"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "bow",
+            "name": "Bow",
+            "type": "ranged",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "long-range",
+                "reload-one"
+            ],
+            "maneuver": [],
+            "pts": 2
+        },
+        {
+            "id": "crossbow-onehanded",
+            "name": "one handed Crossbow",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "long-range",
+                "piercing-plus-one",
+                "reload-two"
+            ],
+            "maneuver": [],
+            "pts": 2
+        },
+        {
+            "id": "crossbow-twohanded",
+            "name": "two handed Crossbow",
+            "type": "ranged",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "long-range",
+                "piercing-plus-one",
+                "reload-two"
+            ],
+            "maneuver": [],
+            "pts": 2
+        },
+        {
+            "id": "harquebus",
+            "name": "Harquebus",
+            "type": "ranged",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "long-range",
+                "piercing-plus-two",
+                "reload-three"
+            ],
+            "maneuver": [],
+            "pts": 3
+        },
+        {
+            "id": "throwing-spear",
+            "name": "Javelin or Spear",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "medium-range"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "pistolet",
+            "name": "Pistolet",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "short-range",
+                "piercing-plus-two",
+                "reload-two"
+            ],
+            "maneuver": [],
+            "pts": 2
+        },
+        {
+            "id": "sling",
+            "name": "Sling",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "long-range",
+                "reload-one"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "throwing-axe",
+            "name": "Throwing Axe or Club",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "short-range"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "throwing-knive",
+            "name": "Throwing Knives",
+            "type": "ranged",
+            "hands": 1,
+            "properties": [
+                "short-range",
+                "quick",
+                "weak"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "buckler",
+            "name": "Buckler",
+            "type": "shields",
+            "hands": 1,
+            "properties": [
+                "defensive",
+                "item"
+            ],
+            "maneuver": [
+                "parry"
+            ],
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                }
+            ],
+            "pts": 0
+        },
+        {
+            "id": "shield",
+            "name": "Shield",
+            "type": "shields",
+            "hands": 1,
+            "properties": [
+                "defensive",
+                "item"
+            ],
+            "maneuver": [
+                "parry",
+                "block"
+            ],
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "enable-level": 3
+                }
+            ],
+            "pts": 1
+        },
+        {
+            "id": "axe-onehanded",
+            "name": "one handed Axe",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "powerful"
+            ],
+            "maneuver": [
+                "sweep"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "axe-twohanded",
+            "name": "two handed Axe",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "powerful"
+            ],
+            "maneuver": [
+                "sweep"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "banner",
+            "name": "Banner",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "rally"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "gory-trophy",
+            "name": "Gory Trophy",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "taunt"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "greatsword",
+            "name": "Greatsword",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "powerful",
+                "reach"
+            ],
+            "maneuver": [
+                "riposte",
+                "sweep"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "halberd",
+            "name": "Halberd",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "reach"
+            ],
+            "maneuver": [
+                "set",
+                "smash"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "hammer-onehanded",
+            "name": "one handed Hammer/Pick",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "crushing"
+            ],
+            "maneuver": [
+                "smash"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "hammer-twohanded",
+            "name": "two handed Hammer/Pick",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "crushing"
+            ],
+            "maneuver": [
+                "smash"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "lance",
+            "name": "Lance",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "mounted",
+                "piercing-plus-one",
+                "reach"
+            ],
+            "maneuver": [],
+            "pts": 2
+        },
+        {
+            "id": "martial-arts",
+            "name": "Martial Arts",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "defensive",
+                "quick",
+                "weak"
+            ],
+            "maneuver": [
+                "parry",
+                "throw"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "net",
+            "name": "Net",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "reach",
+                "entangle"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "parrying-dagger",
+            "name": "Parrying Dagger",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "weak"
+            ],
+            "maneuver": [
+                "parry",
+                "weak-spot"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "fencing-sword",
+            "name": "fencing Sword",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "piercing-plus-one",
+                "quick",
+                "weak"
+            ],
+            "maneuver": [
+                "parry",
+                "riposte"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "slashing-sword-onehanded",
+            "name": "one handed slashing Sword",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "wounding"
+            ],
+            "maneuver": [
+                "riposte"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "slashing-sword-twohanded",
+            "name": "two handed slashing Sword",
+            "type": "material",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "wounding"
+            ],
+            "maneuver": [
+                "riposte"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "thrusting-Sword",
+            "name": "thrusting Sword",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "piercing-plus-one"
+            ],
+            "maneuver": [
+                "riposte"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "whip",
+            "name": "Whip",
+            "type": "material",
+            "hands": 1,
+            "properties": [
+                "short-range"
+            ],
+            "maneuver": [
+                "drag"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "bite",
+            "name": "Bite or Sting",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "wounding"
+            ],
+            "maneuver": [
+                "weak-spot"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "bludgeon",
+            "name": "Bludgeon",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "crushing"
+            ],
+            "maneuver": [
+                "smash"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "claws",
+            "name": "Claws",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "quick"
+            ],
+            "maneuver": [
+                "pounce"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "missile",
+            "name": "Missile",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "medium-range"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "horns",
+            "name": "Horns",
+            "type": "natural",
+            "hands": [],
+            "properties": [],
+            "maneuver": [
+                "throw",
+                "trample"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "tail",
+            "name": "Tail",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "reach"
+            ],
+            "maneuver": [
+                "sweep"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "tentacles",
+            "name": "Tentacles",
+            "type": "natural",
+            "hands": [],
+            "properties": [
+                "short-range",
+                "entangle"
+            ],
+            "maneuver": [
+                "drag"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "book",
+            "name": "Book or Scroll",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "empower"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "orb",
+            "name": "Orb",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "item"
+            ],
+            "maneuver": [
+                "prognosticate"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "ritual-dagger",
+            "name": "Ritual Dagger",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "blood-sacrifice",
+                "weak"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "wand",
+            "name": "Wand",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "item",
+                "light",
+                "spell-piercing-plus-one"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "witch-fingers",
+            "name": "Witch Fingers",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "somatic",
+                "weak"
+            ],
+            "maneuver": [],
+            "pts": 1
+        },
+        {
+            "id": "wizard-staff-onehanded",
+            "name": "one handed Wizard’s Staff",
+            "type": "magical",
+            "hands": 1,
+            "properties": [
+                "defensive",
+                "light"
+            ],
+            "maneuver": [
+                "magic-shield"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "wizard-staff-twohanded",
+            "name": "two handed Wizard’s Staff",
+            "type": "magical",
+            "hands": 2,
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ],
+            "properties": [
+                "defensive",
+                "light"
+            ],
+            "maneuver": [
+                "magic-shield"
+            ],
+            "pts": 2
+        }
+    ],
+    "weapon-properties": [
+        {
+            "id": "blood-sacrifice",
+            "name": "Blood Sacrifice",
+            "effect": "When you lose a roll to cast a spell, give this model a staggered token to re-roll the result."
+        },
+        {
+            "id": "chain",
+            "name": "Chain",
+            "effect": "Opposing models cannot use Parry against this weapon."
+        },
+        {
+            "id": "crushing",
+            "name": "Crushing",
+            "effect": "Use 2 actions on a Melee Attack for a -1 to your tagets Def roll, or 3 actions for a -2"
+        },
+        {
+            "id": "defensive",
+            "name": "Defensive",
+            "effect": "This model receives a +1 bonus to Def rolls. Attack Result Table rolls for this weapon receive a -1 penalty."
+        },
+        {
+            "id": "entangle",
+            "name": "Entangle",
+            "effect": "Do not roll on the Attack Result Table after a successful attack. Instead until the end of this round the target is -1 to Spd and -1DT to Def and Mgt rolls"
+        },
+        {
+            "id": "item",
+            "name": "Item",
+            "effect": "you may not make Melee or Ranged attacks with this weapon."
+        },
+        {
+            "id": "light",
+            "name": "Light",
+            "effect": "This weapon emits light(p 10)"
+        },
+        {
+            "id": "mounted",
+            "name": "Mounted",
+            "effect": "Only a Cavalry model may use this weapon. A model with this weapon may have a 2d10 Mgt even though this is one-handed weapon."
+        },
+        {
+            "id": "piercing",
+            "name": "Piercing",
+            "effect": "Rolls on the Attack Result Table add the listed bonus."
+        },
+        {
+            "id": "piercing-plus-one",
+            "name": "Piercing(+1)",
+            "effect": "Rolls on the Attack Result Table add the listed bonus.(+1)"
+        },
+        {
+            "id": "piercing-plus-two",
+            "name": "Piercing(+2)",
+            "effect": "Rolls on the Attack Result Table add the listed bonus.(+2)"
+        },
+        {
+            "id": "powerful",
+            "name": "Powerful",
+            "effect": "Use 2 actions on a Melee Attack for a +1 to your Mgt roll or 3 actions for a +2."
+        },
+        {
+            "id": "quick",
+            "name": "Quick",
+            "effect": "This weapon may take 2 Melee or Ranged Attack actions per activation."
+        },
+        {
+            "id": "reach",
+            "name": "Reach",
+            "effect": "This weapon may make a Melee Attack action against enemies within a 1/2 stick."
+        },
+        {
+            "id": "reload",
+            "name": "Reload",
+            "effect": "Place the listed number of reload tokens next to the model after making a Ranged Attack."
+        },
+        {
+            "id": "reload-one",
+            "name": "Reload(1)",
+            "effect": "Place 1 reload tokens next to the model after making a Ranged Attack."
+        },
+        {
+            "id": "reload-two",
+            "name": "Reload(2)",
+            "effect": "Place 2 reload tokens next to the model after making a Ranged Attack."
+        },
+        {
+            "id": "reload-three",
+            "name": "Reload(3)",
+            "effect": "Place 3 reload tokens next to the model after making a Ranged Attack."
+        },
+        {
+            "id": "somatic",
+            "name": "Somatic",
+            "effect": "+1 to Will rolls for each empty hand when casting a spell."
+        },
+        {
+            "id": "spell-piercing",
+            "name": "Spell Piercing",
+            "effect": "Rolls on the Attack Result table from spells add the listed Bonus."
+        },
+        {
+            "id": "spell-piercing-plus-one",
+            "name": "Spell Piercing(+1)",
+            "effect": "Rolls on the Attack Result table from spells add the listed Bonus.(+1)"
+        },
+        {
+            "id": "unwieldy",
+            "name": "Unwieldy",
+            "effect": "Reroll maximum results on Mgt rolls"
+        },
+        {
+            "id": "weak",
+            "name": "Weak",
+            "effect": "No matter the wielder's Mgt, attack with this weapon never roll more than 2d6 Mgt if one-handed or 2d8 if two-handed. "
+        },
+        {
+            "id": "wounding",
+            "name": "Wounding",
+            "effect": "Reroll 1's when making Melee Attacks with this weapon."
+        },
+        {
+            "id": "short-range",
+            "name": "Short Range",
+            "effect": "This weapon may target any model within 1 stick"
+        },
+        {
+            "id": "medium-range",
+            "name": "Medium Range",
+            "effect": "This weapon may target any model within LoS. but attacks on targets >1 stick away are at -1DT."
+        },
+        {
+            "id": "long-range",
+            "name": "Long Range",
+            "effect": "This weapon may target any model within LoS."
+        }
+    ],
+    "spells": [
+        {
+            "id": "blur",
+            "name": "Blur",
+            "effect": "Target one allied model with LoS. Until the spellcaster activates again, enemy models do not have LoS to this model unless they are within 1 stick of it.",
+            "pts": 1
+        },
+        {
+            "id": "charm",
+            "name": "Charm",
+            "effect": "Targeted enemy takes one action of the spellcasters´choice.",
+            "pts": 2
+        },
+        {
+            "id": "fearful-visage",
+            "name": "Fearful Visage",
+            "effect": "Target one allied model within LoS. Until the spellcaster activates again, enemy models must win a Will roll vs. this model to move BtB.",
+            "pts": 1
+        },
+        {
+            "id": "fireball",
+            "name": "Fireball",
+            "effect": "Target a point within 1 stick. Affects a Blast AoE. Roll on the Ranged Attack column of the Attack Result Table for each target affected. Treat any result of less than 5 as 5.",
+            "pts": 2
+        },
+        {
+            "id": "grasping-vines",
+            "name": "Grasping Vines",
+            "effect": "Target 1 enemy model within LoS. Until the spellcaster activates again, that model`s Spd is reduced by 1, or by2 if the spellcaster´s roll was >= double the target`s",
+            "pts": 1
+        },
+        {
+            "id": "holy-aura",
+            "name": "Holy Aura",
+            "effect": "Until the end of the round, the caster emits holy energy that grants allows allied models within a 1 stick to reroll 1`s on Def, Mgt and Will rolls.",
+            "pts": 1
+        },
+        {
+            "id": "ice-blast",
+            "name": "Ice Blast",
+            "effect": "Targets a Cone AoE. Roll on the Ranged Attack column of the Attack Result Table for each target affected. Treat any result of less than 5 as 5.",
+            "pts": 1
+        },
+        {
+            "id": "lightning-bolt",
+            "name": "Lightning Bolt",
+            "effect": "Affects all models in a Line AoE. Models > 1 stick away gain +1DT to theri Will roll. Roll on the Ranged Attack column of the Attack Result Table for each target affected. Treat any result of less than 5 as 5.",
+            "pts": 2
+        },
+        {
+            "id": "magic-missile",
+            "name": "Magic Missile",
+            "effect": "Target 1 enemy model within LoS. Roll on the Ranged Attack column of the Attack Result Table. Treat a result of less than 5 as 5.",
+            "pts": 1
+        },
+        {
+            "id": "sleep",
+            "name": "Sleep",
+            "effect": "Target 1 enemy model under 20 pts, within 1 stick. That model is staggered and down.",
+            "pts": 2
+        },
+        {
+            "id": "smite",
+            "name": "Smite",
+            "effect": "Target one allied model within 1 stick. The next time this model rolls on the Attack Result Table. Add +1 to result with a success, or +2 if the caster doubled the Unopposed roll.",
+            "pts": 1
+        },
+        {
+            "id": "smoke-cloud",
+            "name": "Smoke Cloud",
+            "effect": "Place a token within LoS of the spellcaster. LoS cannot be drawn through a 1/2 stick radius of this point. Remove the token when  the spellcaster next activates.",
+            "pts": 1
+        },
+        {
+            "id": "telekinesis",
+            "name": "Telekinesis",
+            "effect": "Move 1 obstacle or Model (opposed roll when enemy) up to 1 stick",
+            "pts": 1
+        },
+        {
+            "id": "teleport",
+            "name": "Teleport",
+            "effect": "Target 1 allied model within LoS. Place that model anywhere on the board, but not BtB with an enemy model. Carried treasure or other objectives may not be teleported.",
+            "pts": 1
+        },
+        {
+            "id": "unlife",
+            "name": "Unlife",
+            "effect": "Return 1 OoA model to the table and place it within 1 stick of the spellcaster. The retuned model becomes a member of the spellcaster´s warband with the stats of a Zombie, but only 2 actions per activation instead of 3(p 3). A model can only be returned to the table once.",
+            "pts": 1
+        }
+    ],
+    "maneuvers": [
+        {
+            "id": "bellringer",
+            "name": "Bellringer",
+            "use_when": "this model hits a target with this weapon.",
+            "effect": "Place a staggered token next to the target model. Do not roll on the Melee Attack Table."
+        },
+        {
+            "id": "block",
+            "name": "Block",
+            "use_when": "a Ranged Attack is declared against the model wielding this weapon.",
+            "effect": "+ 1dt to your Def roll."
+        },
+        {
+            "id": "burst",
+            "name": "Burst",
+            "use_when": "this model uses an Interact action",
+            "effect": "Targets a point up to 1 stick from the attacker, Blast AOE, 2d8 Mgt."
+        },
+        {
+            "id": "cure",
+            "name": "Cure",
+            "use_when": " this model uses an Interact action while BtB with a model in your warband.",
+            "effect": "Remove one condition or spell effect from the target mode"
+        },
+        {
+            "id": "distract",
+            "name": "Distract",
+            "use_when": "a Melee Attack is declared against this model.",
+            "effect": "The attacking model suffers a - 1dt penalty to its Mgt roll."
+        },
+        {
+            "id": "drag",
+            "name": "Drag",
+            "use_when": "this model hits a target with this weapon.",
+            "effect": "Move the target BtB with the attacker."
+        },
+        {
+            "id": "empower",
+            "name": "Empower",
+            "use_when": "this model casts a spell.",
+            "effect": "+ 1dt to your Will roll"
+        },
+        {
+            "id": "enchance",
+            "name": "Enhance",
+            "use_when": "this model uses an Interact action on a model in BtB contact",
+            "effect": "The next roll this model makes gains + 1dt."
+        },
+        {
+            "id": "hasten",
+            "name": "Hasten",
+            "use_when": "you activate any model.",
+            "effect": "Raise this model’s Spd by 1 for this activation, to a maximum of 3.",
+            "universal": true
+        },
+        {
+            "id": "inspire",
+            "name": "Inspire",
+            "use_when": "this model takes an Interact action.",
+            "effect": "All allied models within 1 stick gain +1 to all Def, Mgt, and Will rolls until the next round."
+        },
+        {
+            "id": "magic-shield",
+            "name": "Magic Shield",
+            "use_when": " a Melee or Ranged Attack is declared against a model wielding this weapon.",
+            "effect": "Roll this model’s Will instead of Def against this attack."
+        },
+        {
+            "id": "parry",
+            "name": "Parry",
+            "use_when": "a Melee Attack is declared against the model wielding this weapon.",
+            "effect": "+ 1dt to your Def roll"
+        },
+        {
+            "id": "pounce",
+            "name": "Pounce",
+            "use_when": "this model takes its 2nd or 3rd Move action, ends the Move >1 stick from where it started and also BtB with an enemy model",
+            "effect": "Place the enemy model down."
+        },
+        {
+            "id": "prognosticate",
+            "name": "Prognosticate",
+            "use_when": "before any player makes a roll.",
+            "effect": "Add + 1dt or - 1dt to the roll."
+        },
+        {
+            "id": "rally",
+            "name": "Rally",
+            "use_when": "this model uses an Interact action when your warband is broken.",
+            "effect": "Your warband is no longer broken."
+        },
+        {
+            "id": "regroup",
+            "name": "Regroup",
+            "use_when": "you have Maneuver Points left in the Maintenance Phase.",
+            "effect": "Gain + 1dt to your next Initiative roll.",
+            "universal": true
+        },
+        {
+            "id": "repel",
+            "name": "Repel",
+            "use_when": "this model takes an Interact action.",
+            "effect": "All BtB models must move 1 stick away from this model, but not BtB with any other model in your warband."
+        },
+        {
+            "id": "riposte",
+            "name": "Riposte",
+            "use_when": "this model is still ready and BtB with its attacker after being the target of a Melee Attack action.",
+            "effect": "Make a Melee Attack against the attacker."
+        },
+        {
+            "id": "set",
+            "name": "Set",
+            "use_when": " an enemy model that started its activation more than 1 stick away moves BtB with this model",
+            "effect": "Immediately make a Melee Attack against the enemy model with this weapon"
+        },
+        {
+            "id": "smash",
+            "name": "Smash",
+            "use_when": "this model takes a Melee Attack action using this weapon.",
+            "effect": "+ 1dt to your Mgt roll."
+        },
+        {
+            "id": "sweep",
+            "name": "Sweep",
+            "use_when": "this model takes a Melee Attack action using this weapon.",
+            "effect": "Make an attack against every model BtB with this model."
+        },
+        {
+            "id": "taunt",
+            "name": "Taunt",
+            "use_when": "this model takes an Interact action.",
+            "effect": " Enemy models within 1 stick take a - 1 penalty to all Def, Mgt, and Will rolls until the next round."
+        },
+        {
+            "id": "throw",
+            "name": "Throw",
+            "use_when": "this model hits a target with this weapon.",
+            "effect": "The attacker places the target model down anywhere within 1 stick. Do not roll on the Attack Result Table"
+        },
+        {
+            "id": "trample",
+            "name": "Trample",
+            "use_when": "this model takes a Melee Attack action.",
+            "effect": "Make a 2d8 Mgt Melee Attack against every model within a ½ stick of the attacking model."
+        },
+        {
+            "id": "weak-spot",
+            "name": "Weak Spot",
+            "use_when": "this model hits a target with this weapon.",
+            "effect": "+1 to the Attack Result Table roll."
+        }
+    ],
+    "leader_traits": [
+        {
+            "id": "enchanted-weapon",
+            "name": "Enchanted Weapon",
+            "effect": "Choose one weapon. It gains: \n→ Emits light (p 10) \n→ 1-handed weapons may have 2d10 Mgt \n→ 2-handed weapons gain +1 to Mgt rolls"
+        },
+        {
+            "id": "enchanted-weapon-light",
+            "name": "Enchanted Weapon with Light",
+            "effect": "Choose one weapon. It gains: Emits light"
+        },
+        {
+            "id": "enchanted-weapon-one-handed",
+            "name": "Enchanted Weapon One Handed",
+            "effect": "Choose one weapon. It gains: 1-handed weapons may have 2d10 Mgt",
+            "stat-mod": [
+                {
+                    "name": "might",
+                    "enable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "enchanted-shield",
+            "name": "Enchanted Shield",
+            "effect": "Must be wielding a shield. The leader cannot be targeted by Ranged Attacks."
+        },
+        {
+            "id": "extraplanar",
+            "name": "Extraplanar",
+            "effect": "The leader gains the Flyer class.",
+            "short-effect": "",
+            "classes": "flyer"
+        },
+        {
+            "id": "hero-villain",
+            "name": "Hero/Villain",
+            "effect": "Double the point value of this model. It can activate twice in a round, but not twice in a row. Remove movement tokens when you activate the 2nd time. Best if both leaders have this ability. Talk to your opponent when building warbands.",
+            "short-effect": "The Model can activate twice in a round, but not twice in a row. Remove movement tokens when you activate the 2nd time. Best if both leaders have this ability. Talk to your opponent when building warbands.",
+            "pts-change": "x * 2"
+        },
+        {
+            "id": "mage-killer",
+            "name": "Mage Killer",
+            "effect": "+ 1dt to Attack rolls vs. models that can cast spells. + 1dt to Will rolls vs. spells"
+        },
+        {
+            "id": "majestic",
+            "name": "Majestic",
+            "effect": "Any time a model in your warband has LoS to the leader and makes a Will roll, that model may use the leader’s Will instead."
+        },
+        {
+            "id": "noble",
+            "name": "Noble",
+            "effect": "Attack actions targeting this leader instead target any other model in the leader’s warband that is within ½ stick and is fewer points than the Leader."
+        },
+        {
+            "id": "monstrous",
+            "name": "Monstrous",
+            "effect": "Non-leader models must win a Will roll vs. your leader to move BtB."
+        },
+        {
+            "id": "sorcerer",
+            "name": "Sorcerer",
+            "effect": "2 point spells cost 1 action to cast."
+        },
+        {
+            "id": "tactician",
+            "name": "Tactician",
+            "effect": "+ 1dt to your warband’s Initiative rolls."
+        }
+    ],
+    "warband_traits": [
+        {
+            "id": "adventuring-party",
+            "name": "Adventuring Party",
+            "effect": "This warband may not have more than 1 of any class. Gain 1 extra Maneuver Point per round",
+            "short-effect": "Gain 1 extra Maneuver Point per round",
+            "class-limit-mod": [
+                {
+                    "name": "*",
+                    "max-of-class": "1"
+                }
+            ]
+        },
+        {
+            "id": "beast-folk",
+            "name": "Beast Folk",
+            "effect": "May purchase natural weapons.",
+            "short-effect": "",
+            "weapon-proficiencies": [
+                "natural"
+            ]
+        },
+        {
+            "id": "comrades-in-arms",
+            "name": "Comrades in Arms",
+            "effect": "Models in this warband may all have 2 classes, however, 1 class must be shared by every model in the warband and not have a limit to how many a warband may have.",
+            "short-effect": "",
+            "class-max": 2,
+            "class-limit-mod": [
+                {
+                    "tag": "must-share-one-class"
+                }
+            ]
+        },
+        {
+            "id": "cloven",
+            "name": "Coven",
+            "effect": "This warband may have up to 3 magic users and 3 beasts",
+            "short-effect": "",
+            "class-limit-mod": [
+                {
+                    "name": "magic-user",
+                    "max-of-class": "3"
+                },
+                {
+                    "name": "beast",
+                    "max-of-class": "3"
+                }
+            ]
+        },
+        {
+            "id": "deep-dwellers",
+            "name": "Deep Dwellers",
+            "effect": "Not affected by darkness. +1 Mgt to attacks with hammers and picks."
+        },
+        {
+            "id": "fanatics",
+            "name": "Fanatics",
+            "effect": "Roll Will with + 1dt for all rolls except Cast Spell actions."
+        },
+        {
+            "id": "forces-of-chaos",
+            "name": "Forces of Chaos",
+            "effect": "Once per round force your opponent to reroll a single maximum die result."
+        },
+        {
+            "id": "forces-of-law",
+            "name": "Forces of Law",
+            "effect": "Once per round reroll a single die result of 1."
+        },
+        {
+            "id": "forest-folk",
+            "name": "Forest Folk",
+            "effect": "If models in this warband end a Move action next to a climbable piece of terrain, they may move to the top. Double the number of archers and hunters this warband may have.",
+            "short-effect": "If models in this warband end a Move action next to a climbable piece of terrain, they may move to the top.",
+            "class-limit-mod": [
+                {
+                    "name": "archer",
+                    "max-of-class": "x*2"
+                },
+                {
+                    "name": "hunter",
+                    "max-of-class": "x*2"
+                }
+            ]
+        },
+        {
+            "id": "glory-hounds",
+            "name": "Glory Hounds",
+            "effect": "After any model in this warband takes an enemy model OoA after a double or triple on the attack roll, that model may use the Inspire maneuver without spending a Maneuver Point."
+        },
+        {
+            "id": "monster-squad",
+            "name": "Monster Squad",
+            "effect": "Double the number of beasts, flyers, magical beasts, and monsters this warband may have. Not affected by darkness.",
+            "short-effect": "Not affected by darkness.",
+            "class-limit-mod": [
+                {
+                    "name": "beast",
+                    "max-of-class": "x*2"
+                },
+                {
+                    "name": "flyer",
+                    "max-of-class": "x*2"
+                },
+                {
+                    "name": "magical-beast",
+                    "max-of-class": "x*2"
+                },
+                {
+                    "name": "monster",
+                    "max-of-class": "x*2"
+                }
+            ]
+        },
+        {
+            "id": "otherworldly",
+            "name": "Otherworldly",
+            "effect": "All models in this warband may purchase a 1 pt. spell.",
+            "short-effect": "",
+            "max_spell_cost": 1
+        },
+        {
+            "id": "rabble",
+            "name": "Rabble",
+            "effect": "Every model except the leader must be a fool or wretch. Add 1 wretch to your warband for free.",
+            "short-effect":"",
+            "class-limit-mod": [
+                {
+                    "name": "*",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "fool",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "wretch",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "wretch",
+                    "tag": "for-free"
+                },
+                {
+                    "tag": "leader-can-pick-everthing"
+                }
+            ]
+        },
+        {
+            "id": "small-folk",
+            "name": "Small Folk",
+            "effect": "Disengage costs 1 action. Melee Attacks vs. this warband never get a Gang-up bonus. May not purchase 2d10 Def or Mgt.",
+            "short-effect": "Disengage costs 1 action. Melee Attacks vs. this warband never get a Gang-up bonus.",
+            "stat-mod": [
+                {
+                    "name": "defense",
+                    "disable-level": 3
+                },
+                {
+                    "name": "might",
+                    "disable-level": 3
+                }
+            ]
+        },
+        {
+            "id": "soldiers",
+            "name": "Soldiers",
+            "effect": "At least half the members of this warband must be fighters. If models in this warband are BtB with an ally, they gain +1 to Def rolls",
+            "short-effect": "If models in this warband are BtB with an ally, they gain +1 to Def rolls",
+            "class-limit-mod": [
+                {
+                    "name": "fighter",
+                    "tag": "must-be-half-in-warband"
+                }
+            ]
+        },
+        {
+            "id": "swamp-dwellers",
+            "name": "Swamp Dwellers",
+            "effect": "Water and swamp terrain is not difficult. May purchase bite and tail natural weapons.",
+            "weapon-mod": [
+                {
+                    "name": "bite",
+                    "purchasable": "true"
+                },
+                {
+                    "name": "tail",
+                    "purchasable": "true"
+                }
+            ]
+        },
+        {
+            "id": "thieves-guild",
+            "name": "Thieves Guild",
+            "effect": "All warband members must be acrobats, assassins, spies, and thieves. Interact costs 1 action for this warband. Not affected by darkness.",
+            "short-effect": "Interact costs 1 action for this warband. Not affected by darkness.",
+            "class-limit-mod": [
+                {
+                    "name": "*",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "acrobat",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "assasin",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "spy",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "thief",
+                    "max-of-class": "undefined"
+                }
+            ]
+        },
+        {
+            "id": "tribal",
+            "name": "Tribal",
+            "effect": "All warband members must be barbarians, beasts, berserkers, and hunters. +1 to Mgt with 2-handed weapons.",
+            "short-effect": "+1 to Mgt with 2-handed weapons.",
+            "class-limit-mod": [
+                {
+                    "name": "*",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "barbarian",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "beast",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "berserker",
+                    "max-of-class": "undefined"
+                },
+                {
+                    "name": "hunter",
+                    "max-of-class": "undefined"
+                }
+            ]
+        },
+        {
+            "id": "undead",
+            "name": "Undead",
+            "effect": "Recover actions are automatically successful. May purchase bite and claw natural weapons. Not affected by darkness.",
+            "short-effect": "Recover actions are automatically successful. Not affected by darkness.",
+            "weapon-mod": [
+                {
+                    "name": "claw",
+                    "purchasable": "true"
+                },
+                {
+                    "name": "bite",
+                    "purchasable": "true"
+                }
+            ]
+        },
+        {
+            "id": "witch-hunters",
+            "name": "Witch Hunters",
+            "effect": "Once per round, when a model from this warband is BtB with a down or staggered enemy, it can take an Interact action to make the enemy OoA. This warband may not include any models that cast spells except a Healer.",
+            "class-limit-mod": [
+                {
+                    "name": "magic-user",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "magical-beast",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "spell-sword",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "necromancer",
+                    "max-of-class": "0"
+                },
+                {
+                    "name": "druid",
+                    "max-of-class": "0"
+                }
+            ]
+        }
+    ]
+}
