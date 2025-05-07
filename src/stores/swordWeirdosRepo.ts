@@ -9,6 +9,22 @@ export const useSwordWeirdosRepo = defineStore('swordWeirdosRepo', {
     // could also be defined as
     // state: () => ({ count: 0 })
     actions: {
+      updateSwordWeirdoRepo(newSwordWeirdoRepo:string){
+        const repo=JSON.parse(newSwordWeirdoRepo);
+        for (const [key, value] of Object.entries(repo)) {
+          this[key]=value
+        }
+      },
+      getCurrentStoreAsString(){
+        const jsonObj={}
+        for (const [key, value] of Object.entries(this)) {
+          if(!["$id","_isOptionsAPI"].includes(key)){
+            jsonObj[key]=value
+          }
+        }
+
+        return JSON.stringify(jsonObj, null, 4);
+      },
       getClassWithID(name:string){
         return this.classes.find((element) => element.id==name)
       },

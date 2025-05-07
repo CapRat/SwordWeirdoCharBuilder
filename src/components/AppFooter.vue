@@ -14,7 +14,7 @@
         :size="item.icon === '$vuetify' ? 24 : 16"
       />
     </a>
-
+    <div class="text-caption text-disabled"><a>Ver: 0.0.1</a></div>
     <div
       class="text-caption text-disabled"
       style="position: absolute; right: 16px;"
@@ -37,10 +37,11 @@
   const items = [
     
     {
-      title: 'Vuetify Support',
+      title: 'SwordWeirdos Site',
       icon: 'mdi-sword',
       href: 'https://www.drivethrurpg.com/en/product/437324/sword-weirdos',
     },
+    
   ]
 </script>
 

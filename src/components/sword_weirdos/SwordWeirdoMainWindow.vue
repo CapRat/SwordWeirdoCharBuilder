@@ -2,6 +2,7 @@
 import WarbandEntityPreview from '@/components/sword_weirdos/WarbandEntityList.vue';
 import PrintPreview from '@/components/sword_weirdos/PrintPreview.vue';
 import WarbandConfig from '@/components/sword_weirdos/WarbandConfig.vue';
+import SwordWeirdosRepoDialogue from '@/components/sword_weirdos/SwordWeirdosRepoDialogue.vue';
 import WarbandEntity from '@/model/WarbandEntity';
 import Warband from '@/model/Warband';
 import { useSwordWeirdosRepo } from '@/stores/swordWeirdosRepo';
@@ -26,6 +27,18 @@ function removeWarbandEntity(warbandEntity: WarbandEntity) {
   warbandModel.value.entities.splice(warbandIndex, 1);
 }
 
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 </script>
 
@@ -33,27 +46,30 @@ function removeWarbandEntity(warbandEntity: WarbandEntity) {
   <v-app-bar :elevation="0">
   
 
-    <v-app-bar-title  > <v-btn variant="plain" href="https://www.drivethrurpg.com/en/product/437324/sword-weirdos" > Sword-Weirdo Generator</v-btn></v-app-bar-title>
+    <v-app-bar-title  > <v-btn variant="plain" href="https://www.drivethrurpg.com/en/product/437324/sword-weirdos" > Sword-Weirdos Generator</v-btn></v-app-bar-title>
 
     <template v-slot:append>
-      <v-btn @click="preview = false" icon="mdi-pencil" :color="!preview ? 'primary' : ''"></v-btn>
-
-      <v-btn @click="preview = true" icon="mdi-eye" :color="preview ? 'primary' : ''"></v-btn>
+      <v-btn @click="preview = !preview" icon="mdi-eye" :color="preview ? 'primary' : ''"></v-btn>
       <v-menu width="400">
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" icon="mdi-dots-vertical"></v-btn>
         </template>
         <v-list>
           <v-list-item>
-            <v-btn>Create New Warband</v-btn>
+            <v-btn text="Create New Warband" @click="warbandModel=new Warband()"></v-btn>
           </v-list-item>
           <v-list-item>
-            <v-file-input label="Upload Repository"></v-file-input>
+            <SwordWeirdosRepoDialogue> </SwordWeirdosRepoDialogue>
+          </v-list-item>
+          <v-list-item>
+            <v-btn text="Download Ruleset" @click="download('CurrentSwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())"> </v-btn>
           </v-list-item>
         </v-list>
       </v-menu>
     </template>
   </v-app-bar>
+
+
   <v-container v-if="!preview">
     <v-alert v-for="error in warbandModel.getErrors()"  :text="error"  type="error"></v-alert>
     <v-alert v-for="warning in warbandModel.getWarnings()" :text="warning" type="warning"></v-alert>

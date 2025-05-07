@@ -12,6 +12,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SwordWeirdoMainWindow: typeof import('./components/sword_weirdos/SwordWeirdoMainWindow.vue')['default']
+    SwordWeirdosRepoDialogue: typeof import('./components/sword_weirdos/SwordWeirdosRepoDialogue.vue')['default']
     WarbandConfig: typeof import('./components/sword_weirdos/WarbandConfig.vue')['default']
     WarbandEntityClassPicker: typeof import('./components/sword_weirdos/WarbandEntityClassPicker.vue')['default']
     WarbandEntityCofiguration: typeof import('./components/sword_weirdos/WarbandEntityCofiguration.vue')['default']
