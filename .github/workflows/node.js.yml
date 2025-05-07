@@ -28,4 +28,8 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: SwordWeirdoDist
+        path: dist/ # or path/to/artifact
 #    - run: npm test
