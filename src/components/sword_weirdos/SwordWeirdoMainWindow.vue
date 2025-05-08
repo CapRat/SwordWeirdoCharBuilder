@@ -78,26 +78,27 @@ function download(filename, text) {
   <v-container v-if="!preview">
     <v-alert v-for="error in warbandModel.getErrors()"  :text="error"  type="error"></v-alert>
     <v-alert v-for="warning in warbandModel.getWarnings()" :text="warning" type="warning"></v-alert>
-
-    <v-col>
-      <v-row>
-        <v-container width="50%">
-
+    <v-row no-gutters>
+      <v-col>
+        <v-container min-width="300px">
           <h1>{{ warbandModel.name != undefined && warbandModel.name != "" ? warbandModel.name : "Warband" }}<v-icon
               @click="showWarbandConfig = true" class="ma-1 pa-3 pb-6" size="x-small">mdi-pencil</v-icon></h1>
           <h4>{{ swordWeirdoRepo.getWarbandTraitWithID(warbandModel.warbandTrait)?.name }}</h4>
+          <WarbandConfig v-model:show="showWarbandConfig" v-model="warbandModel"></WarbandConfig>
+          <WarbandEntityPreview  v-model="warbandModel.entities"
+            @add-warband-entity="(warbandEntity) => warbandEntity.containingWarband = warbandModel"
+            @remove-warband-entity="(warbandEntity) => removeWarbandEntity(warbandEntity)" v-model:index="index" />
         </v-container>
-        <WarbandConfig v-model:show="showWarbandConfig" v-model="warbandModel"></WarbandConfig>
-      </v-row>
-      <v-row>
+      </v-col>
+      <v-col>
 
-        <WarbandEntityPreview width="50%" v-model="warbandModel.entities"
-          @add-warband-entity="(warbandEntity) => warbandEntity.containingWarband = warbandModel"
-          @remove-warband-entity="(warbandEntity) => removeWarbandEntity(warbandEntity)" v-model:index="index" />
-        <WarbandEntityCofiguration v-model="warbandModel.entities[index]" />
-
-      </v-row>
-    </v-col>
+     
+      <WarbandEntityCofiguration v-model="warbandModel.entities[index]" />
+      </v-col>
+    </v-row>
+   
+      
+ 
   </v-container>
   <PrintPreview v-if="preview" v-model="warbandModel"></PrintPreview>
  

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-//import { ref } from 'vue'
-//const greeting = ref('Hello World!')
 
 defineProps<{
   highlight?: boolean
