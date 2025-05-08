@@ -3,6 +3,7 @@ import WarbandEntityPreview from '@/components/sword_weirdos/WarbandEntityList.v
 import PrintPreview from '@/components/sword_weirdos/PrintPreview.vue';
 import WarbandConfig from '@/components/sword_weirdos/WarbandConfig.vue';
 import SwordWeirdosRepoDialogue from '@/components/sword_weirdos/SwordWeirdosRepoDialogue.vue';
+import InfoDialog from '@/components/sword_weirdos/InfoDialog.vue';
 import WarbandEntity from '@/model/WarbandEntity';
 import Warband from '@/model/Warband';
 import { useSwordWeirdosRepo } from '@/stores/swordWeirdosRepo';
@@ -56,6 +57,9 @@ function download(filename, text) {
         </template>
         <v-list>
           <v-list-item>
+          <InfoDialog> </InfoDialog>
+        </v-list-item>
+          <v-list-item>
             <v-btn text="Create New Warband" @click="warbandModel=new Warband()"></v-btn>
           </v-list-item>
           <v-list-item>
@@ -64,6 +68,7 @@ function download(filename, text) {
           <v-list-item>
             <v-btn text="Download Ruleset" @click="download('CurrentSwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())"> </v-btn>
           </v-list-item>
+         
         </v-list>
       </v-menu>
     </template>

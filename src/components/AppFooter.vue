@@ -1,3 +1,15 @@
+<script setup lang="ts">
+  import pjson from "../../package.json"
+  const items = [
+    
+    {
+      title: 'SwordWeirdos Site',
+      icon: 'mdi-sword',
+      href: 'https://www.drivethrurpg.com/en/product/437324/sword-weirdos',
+    },
+    
+  ]
+</script>
 <template>
   <v-footer height="40" app>
     <a
@@ -14,7 +26,7 @@
         :size="item.icon === '$vuetify' ? 24 : 16"
       />
     </a>
-    <div class="text-caption text-disabled"><a>Ver: 0.0.1</a></div>
+    <div class="text-caption text-disabled"><a>Version: {{ pjson.version }}</a></div>
     <div
       class="text-caption text-disabled"
       style="position: absolute; right: 16px;"
@@ -33,17 +45,7 @@
   </v-footer>
 </template>
 
-<script setup lang="ts">
-  const items = [
-    
-    {
-      title: 'SwordWeirdos Site',
-      icon: 'mdi-sword',
-      href: 'https://www.drivethrurpg.com/en/product/437324/sword-weirdos',
-    },
-    
-  ]
-</script>
+
 
 <style scoped lang="sass">
   .social-link :deep(.v-icon)

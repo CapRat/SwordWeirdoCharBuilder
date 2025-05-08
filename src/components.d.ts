@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    InfoDialog: typeof import('./components/sword_weirdos/InfoDialog.vue')['default']
     PrintPreview: typeof import('./components/sword_weirdos/PrintPreview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

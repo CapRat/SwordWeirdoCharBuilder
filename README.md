@@ -11,6 +11,21 @@ Generate your unique Sword Weirdos warband with this fun and easy-to-use generat
 - 🏬 [Buy the Game](https://www.wargamevault.com/product/437324/Sword-Weirdos?term=sword+wei)
 - 🎮 [Hosted](https://caprat.github.io/SwordWeirdoCharBuilder/)
 
+## ✨ Features
+- dynamic Warband generaton
+- supports a wide range of different classes weapons and so on (only 2-3 make problems currently)
+- primitive Print support(its not the most beautiful print in the world, but it lets you start in the game)
+- Support for complete new Rulesets or modification of current one. (Add your own classes and other stoff easy per json) 
+
+## Future Development
+Currently there is a lot to do in this Project, i know. But since it currently has not so much usage. So if you want more, submit bugs or contact me for new features. I currently have some kind of plan what i will do in the Future but since i do it in my freetime i cant assure you, when its done. The Milestones currently are not in any order and might also be done parrallele.
+
+### Milestones
+    - Improve overall stability (specially when removing classes like caster, which currently leads to a lot of problems)
+    - try to reconfigure the way errors are handled (on some wrong configurations just show an error, and on some dont allow it. But this takes a lot of time to make it good for userexperience)
+    - Create Documentation in general and specially in how to handle the Ruleset, since you can do a lot with it (for example turn the Game completly upside down with new classes and everything)
+    - Improve printing dialogue
+    
 ## 💿 Install
 
 To setup this project install npm and then run a dev server locally:
@@ -26,11 +41,7 @@ cd swordWeirdoDistFolder
 python3 -m http.server 8080
 ```
 
-## ✨ Features
-- dynamic Warband generaton
-- supports a wide range of different classes weapons and so on (only 2-3 make problems currently)
-- primitive Print support(its not the most beautiful print in the world, but it lets you start in the game)
-- Support for complete new Rulesets or modification of current one. (Add your own classes and other stoff easy per json file.) 
+
 
 ## 📑 License
 [MIT](http://opensource.org/licenses/MIT)
