@@ -38,7 +38,7 @@ function isValidWeapon(myWeapon){
         <template v-slot:activator="{ props: activatorProps }">
             <v-text-field class="cursor-pointer" color="primary" :readonly="true" @click="" v-bind="activatorProps"
                 label="weapon" variant="underlined" item-title="name" item-value="name" item-children="effect"
-                v-model="chosenClasses" multiple></v-text-field>
+                v-model="weaponsModel" multiple></v-text-field>
 
         </template>
 

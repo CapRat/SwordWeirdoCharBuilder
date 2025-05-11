@@ -79,7 +79,7 @@ const printObj=ref({
               <v-list density="compact" class="ma-0 pa-0">
                 <v-list-item v-for="weapon in item.getComputedWeapons()" class="ma-0 pa-0">
                   <v-list-item-subtitle class="ma-0 pa-0">
-                    <v-card class="ma-0 pa-0">{{weapon?.name + (item.getComputedProperty(weapon).length==0?"":" ["+ item.getComputedProperty(weapon).map(x=>x.name).join(', ') +"]")+(item.getComputedManeuver(weapon).length==0?"":" ("+item.getComputedManeuver(weapon).map(man=>man.name).join(", ") +")" )}}</v-card>
+                    <v-card class="ma-0 pa-0">{{weapon?.name + (item.getComputedProperty(weapon).length==0?"":" ["+ item.getComputedProperty(weapon).map(x=>x.name).join(', ') +"]")+(item.getComputedManeuver(weapon).length==0?"":" ("+item.getComputedManeuver(weapon).map(man=>man?.name).join(", ") +")" )}}</v-card>
                   </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
