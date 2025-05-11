@@ -41,7 +41,12 @@ function selectClass(myClass) {
         </template>
 
         <template v-slot:default="{ isActive }">
-            <v-sheet>
+           
+            <v-card>
+                  <v-btn icon="mdi-arrow-left" @click="isActive.value = false" ></v-btn>
+                  <v-divider></v-divider>
+         
+          
                 <v-container class="scrollable">
                     <v-row v-for="myClass in swordRepo.classes">
                         <v-col>
@@ -54,16 +59,10 @@ function selectClass(myClass) {
                             </v-card>
                         </v-col>
                     </v-row>
-                    <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                 
                 </v-container>
-            </v-sheet>
+            </v-card>
         </template>
     </v-dialog>
 
 </template>
-
-<style>
-.scrollable {
-    overflow-y: scroll;
-}
-</style>

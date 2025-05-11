@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VNumberInput } from 'vuetify/labs/VNumberInput'
+
 
 const showModel = defineModel<boolean>("show")
 const warbandModel = defineModel<Warband>()

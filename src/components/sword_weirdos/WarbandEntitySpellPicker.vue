@@ -44,7 +44,9 @@ function selectSpell(spell) {
         </template>
 
         <template v-slot:default="{ isActive }">
-            <v-sheet>
+              <v-card>
+                 <v-btn icon="mdi-arrow-left" @click="isActive.value = false" ></v-btn>
+                 <v-divider></v-divider>
                 <v-container class="scrollable">
                     <v-row v-for="spell in swordRepo.spells">
                         <v-col v-if="spell.pts <= maxSpellCost">
@@ -59,7 +61,7 @@ function selectSpell(spell) {
                     </v-row>
                     
                 </v-container>
-            </v-sheet>
+            </v-card>
         </template>
     </v-dialog>
 </div>
