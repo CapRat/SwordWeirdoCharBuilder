@@ -12,9 +12,10 @@
     "@mdi/font": "7.4.47",
     "core-js": "^3.42.0",
     "mathjs": "^14.4.0",
+    "paperizer": "^0.1.6",
     "roboto-fontface": "^0.10.0",
     "vue": "^3.4.31",
-    "vue3-print-nb": "^0.1.4",
+    "vue-to-print": "^1.5.1",
     "vuetify": "^3.8.4"
   },
   "devDependencies": {

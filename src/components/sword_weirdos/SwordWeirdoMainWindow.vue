@@ -14,7 +14,10 @@ const warbandModel = ref<Warband>(new Warband())
 const showWarbandConfig = ref<boolean>(false)
 const index = ref(-1)
 const preview = ref(false)
-
+const printRef=ref(null)
+function callPrint() {
+  printRef.value?.print()
+}
 function removeWarbandEntity(warbandEntity: WarbandEntity) {
 
   var warbandIndex = warbandModel.value.entities.indexOf(warbandEntity)
@@ -50,6 +53,7 @@ function download(filename, text) {
     <v-app-bar-title  > <v-btn variant="plain" href="https://www.drivethrurpg.com/en/product/437324/sword-weirdos" > Sword-Weirdos Generator</v-btn></v-app-bar-title>
 
     <template v-slot:append>
+      <v-btn v-if="preview" icon="mdi-printer" @click="callPrint()"></v-btn>
       <v-btn @click="preview = !preview" icon="mdi-eye" :color="preview ? 'primary' : ''"></v-btn>
       <v-menu width="400">
         <template v-slot:activator="{ props }">
@@ -100,7 +104,7 @@ function download(filename, text) {
       
  
   </v-container>
-  <PrintPreview v-if="preview" v-model="warbandModel"></PrintPreview>
+  <PrintPreview v-if="preview" v-model="warbandModel" ref="printRef"></PrintPreview>
  
 </template>
 <style>

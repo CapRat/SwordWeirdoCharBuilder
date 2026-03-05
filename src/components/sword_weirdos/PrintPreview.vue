@@ -3,6 +3,13 @@ import Warband from "@/model/Warband";
 const warbandModel = defineModel<Warband>()
 
 import { useSwordWeirdosRepo } from '@/stores/swordWeirdosRepo';
+import { usePaperizer } from 'paperizer'
+
+const { paperize } = usePaperizer('toPrint',{
+  styles: [
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
+  ]
+})
 
 const swordWeirdoRepo = useSwordWeirdosRepo()
 
@@ -36,31 +43,48 @@ function getAllUsedWeaponProperties() {
 
   return removeDoublesFromIDObj(allProps)
 }
+
 import { ref } from "vue";
 
-const printObj=ref({
-              id: "toPrint",
-              popTitle: 'good print',
-              beforeOpenCallback (vue) {
-                vue.printLoading = true
-              },
-              openCallback (vue) {
-                vue.printLoading = false
-              },
-              closeCallback (vue) {
-              }
-            })
+import { useVueToPrint } from "vue-to-print";
+const printSection = ref();
+function mapStatValueToDiceName(statName, statValue){
+  return swordWeirdoRepo.stats[statName?.toLocaleLowerCase()].filter(val=>val.level===statValue)[0].dice
+}
+const { handlePrint } = useVueToPrint({
+  content: printSection,
+  documentTitle: "WarbandSheet",
+  removeAfterPrint: true
+});
+
+function printVueToPrint() {
+  console.log("Printing")
+  handlePrint()
+}
+
+function print(){
+  console.log("Printing")
+  paperize() // Paperize
+  //handlePrint() // vuetoprint
+}
+
+defineExpose({
+  print
+})
 </script>
 
 <template>
   <v-container>
-    <v-btn v-print="printObj">print</v-btn>
+    
     <v-container class="text-body-2 pa-0 ma-0" id="toPrint">
       <v-table density="compact">
         <thead>
           <tr>
             <th class="text-left">Name</th>
-            <th width="5">Points</th>
+            <th width="5">Spd</th>
+            <th width="5">Mgt</th>
+            <th width="5">Def</th>
+            <th width="5">Wp</th>
             <th>Classes</th>
             <th>Weapons</th>
             <th>Spells</th>
@@ -69,9 +93,12 @@ const printObj=ref({
         </thead>
         <tbody>
           <tr class="ma-0 pa-0" v-for="item in warbandModel?.entities">
-            <td >{{ item.name }}</td>
-            <td >{{ item.getPoints() }}</td>
-            <td>{{ item.getComputedClasses().map((str) => {
+            <td >{{ item.name }}({{ item.getPoints() }})</td>
+            <td >{{ item.speedLevel }}</td>
+            <td >{{ mapStatValueToDiceName("might", item.mightLevel) }}</td>
+            <td >{{ mapStatValueToDiceName("defense", item.defenseLevel )}}</td>
+            <td >{{ mapStatValueToDiceName("willpower", item.willpowerLevel) }}</td>
+            <td> {{item.getComputedClasses().map((str) => {
               return swordWeirdoRepo.getClassWithID(str)?.name
             }).toString()
               }}</td>
