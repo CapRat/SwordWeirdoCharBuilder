@@ -1,0 +1,679 @@
+{
+    "$schema": "weirdo-repo-schema.json",
+    "version": "1.0.0",
+    "type": "space-weirdos",
+    "stats": [
+        {
+            "id": "speed",
+            "name": "Speed",
+            "levels": [
+                {
+                    "level": 1,
+                    "pts": 0
+                },
+                {
+                    "level": 2,
+                    "pts": 1
+                },
+                {
+                    "level": 3,
+                    "pts": 3
+                }
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "levels": [
+                {
+                    "level": 1,
+                    "dice": "2d6",
+                    "pts": 2
+                },
+                {
+                    "level": 2,
+                    "dice": "2d8",
+                    "pts": 4
+                },
+                {
+                    "level": 3,
+                    "dice": "2d10",
+                    "pts": 8,
+                    "restriction": true
+                }
+            ]
+        },
+        {
+            "id": "firepower",
+            "name": "Firepower",
+            "levels": [
+                {
+                    "level": 1,
+                    "dice": "None",
+                    "pts": 0
+                },
+                {
+                    "level": 2,
+                    "dice": "2d8",
+                    "pts": 2
+                },
+                {
+                    "level": 3,
+                    "dice": "2d10",
+                    "pts": 4
+                }
+            ]
+        },
+        {
+            "id": "prowess",
+            "name": "Prowess",
+            "levels": [
+                {
+                    "level": 1,
+                    "dice": "2d6",
+                    "pts": 2
+                },
+                {
+                    "level": 2,
+                    "dice": "2d8",
+                    "pts": 4
+                },
+                {
+                    "level": 3,
+                    "dice": "2d10",
+                    "pts": 6,
+                    "restriction": true
+                }
+            ]
+        },
+        {
+            "id": "willpower",
+            "name": "Willpower",
+            "levels": [
+                {
+                    "level": 1,
+                    "dice": "2d6",
+                    "pts": 2
+                },
+                {
+                    "level": 2,
+                    "dice": "2d8",
+                    "pts": 4
+                },
+                {
+                    "level": 3,
+                    "dice": "2d10",
+                    "pts": 6
+                }
+            ]
+        }
+    ],
+    "weapons": [
+        {
+            "id": "auto-pistol",
+            "name": "Auto Pistol",
+            "type": "ranged",
+            "properties": [
+                "max-actions-3",
+                "close-range"
+            ],
+            "pts": 0
+        },
+        {
+            "id": "heavy-pistol",
+            "name": "Heavy Pistol",
+            "type": "ranged",
+            "properties": [
+                "max-actions-2",
+                "close-range",
+                "heavy"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "energy-pistol",
+            "name": "Energy Pistol",
+            "type": "ranged",
+            "properties": [
+                "max-actions-3",
+                "close-range",
+                "precise"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "auto-rifle",
+            "name": "Auto Rifle",
+            "type": "ranged",
+            "properties": [
+                "max-actions-3",
+                "aim1"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "heavy-rifle",
+            "name": "Heavy Rifle",
+            "type": "ranged",
+            "properties": [
+                "max-actions-2",
+                "aim1",
+                "heavy"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "sniper-rifle",
+            "name": "Sniper Rifle",
+            "type": "ranged",
+            "properties": [
+                "max-actions-1",
+                "aim2",
+                "precise",
+                "long-range",
+                "heavy"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "shotgun",
+            "name": "Shotgun",
+            "type": "ranged",
+            "properties": [
+                "max-actions-2",
+                "close-range",
+                "heavy-when-close",
+                "precise-when-far-away"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "energy-rifle",
+            "name": "Energy Rifle",
+            "type": "ranged",
+            "properties": [
+                "max-actions-2",
+                "aim1",
+                "precise"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "flamer",
+            "name": "Flamer",
+            "type": "ranged",
+            "properties": [
+                "max-actions-1",
+                "cone-attack"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "rocket-launcher",
+            "name": "Rocket Launcher",
+            "type": "ranged",
+            "properties": [
+                "max-actions-1",
+                "aim2",
+                "long-range",
+                "blast-attack"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "autocannon",
+            "name": "Autocannon",
+            "type": "ranged",
+            "properties": [
+                "max-actions-3",
+                "ultra-precise"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "unarmed",
+            "name": "Unarmed",
+            "type": "melee",
+            "properties": [
+                "max-actions-3",
+                "weak"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "claws-n-teeth",
+            "name": "Claws & Teeth",
+            "type": "melee",
+            "properties": [
+                "max-actions-3"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "horrible-claws-n-teeth",
+            "name": "Horrible Claws & Teeth",
+            "type": "melee",
+            "properties": [
+                "max-actions-3",
+                "heavy"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "melee-weapon",
+            "name": "Melee Weapon",
+            "type": "melee",
+            "properties": [
+                "max-actions-2"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "powered-weapon",
+            "name": "Powered Weapon",
+            "type": "melee",
+            "properties": [
+                "max-actions-2",
+                "precise"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "large-melee-weapon",
+            "name": "Large Melee Weapon",
+            "type": "melee",
+            "properties": [
+                "max-actions-1",
+                "heavy"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "large-powered-weapon",
+            "name": "Large Powered Weapon",
+            "type": "melee",
+            "properties": [
+                "max-actions-1",
+                "heavy",
+                "precise"
+            ],
+            "pts": 3
+        },
+        {
+            "id": "whip-or-tail",
+            "name": "Whip or Tail",
+            "type": "melee",
+            "properties": [
+                "max-actions-2",
+                "ranged-melee"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "cybernetics",
+            "name": "Cybernetics",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "powerful"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "grenade",
+            "name": "Grenade",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "active",
+                "one-time-use",
+                "grenade-damage",
+                "blast-attack",
+                "heavy"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "heavy-armor",
+            "name": "Heavy Armor",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "defensive"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "jump-pack",
+            "name": "Junp Pack",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "fly"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "medikit",
+            "name": "Medikit",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "active",
+                "one-time-use",
+                "heal"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "psycic-focus",
+            "name": "Psycic Focus",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "willfull"
+            ],
+            "pts": 1
+        },
+        {
+            "id": "stealth-suit",
+            "name": "Stealth Suit",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "stealthy"
+            ],
+            "pts": 2
+        },
+        {
+            "id": "targeting-reticule",
+            "name": "Targeting Reticule",
+            "type": "equipment",
+            "properties": [
+                "item",
+                "passive",
+                "good-shot"
+            ],
+            "pts": 1
+        }
+    ],
+    "weapon-properties": [
+        {
+            "id": "max-actions-1",
+            "name": "Max Action 1",
+            "effect": "May shoot or fight up to 1 times a turn"
+        },
+        {
+            "id": "max-actions-2",
+            "name": "Max Action 2",
+            "effect": "May shoot or fight up to 2 times a turn"
+        },
+        {
+            "id": "max-actions-3",
+            "name": "Max Action 3",
+            "effect": "May shoot or fight up to 3 times a turn"
+        },
+        {
+            "id": "aim1",
+            "name": "Aim 1",
+            "effect": "May take 1 Aim action. Each Aim action adds +1DT to the model’s next Shoot action if taken before their turn ends"
+        },
+        {
+            "id": "aim2",
+            "name": "Aim 2",
+            "effect": "May take 2 Aim action. Each Aim action adds +1DT to the model’s next Shoot action if taken before their turn ends"
+        },
+        {
+            "id": "close-range",
+            "name": "Close Range",
+            "effect": "-1DT range > 1 stick"
+        },
+        {
+            "id": "heavy",
+            "name": "Heavy",
+            "effect": "+1 to Under Fire or under Attack rolls"
+        },
+        {
+            "id": "heavy-when-close",
+            "name": "Heavy when close",
+            "effect": "+1 to Under Fire rolls, when target is range <= 1 stick"
+        },
+        {
+            "id": "precise",
+            "name": "Precise",
+            "effect": "Reroll FP or Prw rolls of 1(with this weapon)"
+        },
+        {
+            "id": "ultra-precise",
+            "name": "Ultra Precise",
+            "effect": "Reroll FP rolls of 1 or 2"
+        },
+        {
+            "id": "precise-when-long-range",
+            "name": "Precise when long range",
+            "effect": "Reroll FP rolls of 1,when further than 1 stick away"
+        },
+        {
+            "id": "long-range",
+            "name": "Wide Range",
+            "effect": "cannot target enemies < 1 stick away"
+        },
+        {
+            "id": "cone-attack",
+            "name": "Cone Attack",
+            "effect": "Cone AOE"
+        },
+        {
+            "id": "blast-attack",
+            "name": "Blast Attack",
+            "effect": "Blast AOE"
+        },
+        {
+            "id": "weak",
+            "name": "Weak",
+            "effect": "-1DT to Prw rolls"
+        },
+        {
+            "id": "ranged-melee",
+            "name": "Ranged Melee",
+            "effect": "Can target enemies up to 1 stick away"
+        },
+        {
+            "id": "item",
+            "name": "Item",
+            "effect": "you may not make Melee or Ranged attacks with this weapon."
+        },
+        {
+            "id": "one-time-use",
+            "name": "One time use",
+            "effect": "can only be used once."
+        },
+        {
+            "id": "passive",
+            "name": "Passive",
+            "effect": "Bonus is always active"
+        },
+        {
+            "id": "active",
+            "name": "Active",
+            "effect": "require a Use Item action"
+        },
+        {
+            "id": "powerful",
+            "name": "Powerful",
+            "effect": "+1 to Prw rolls"
+        },
+        {
+            "id": "grenade-damage",
+            "name": "Grenade Damage",
+            "effect": "Targets point up to 1 stick from attacke and deals 2d10 FP"
+        },
+        {
+            "id": "defensive",
+            "name": "Defensive",
+            "effect": "+1 to Def rolls"
+        },
+        {
+            "id": "fly",
+            "name": "Fly",
+            "effect": "The model can ignore terrain and other models when taking Move actions"
+        },
+        {
+            "id": "heal",
+            "name": "Heal",
+            "effect": "1 model touching this model becomes ready"
+        },
+        {
+            "id": "willfull",
+            "name": "Willfull",
+            "effect": "+1 to Will rolls"
+        },
+        {
+            "id": "stealthy",
+            "name": "Stealthy",
+            "effect": "If this model’s base touches a piece of terrain, enemy models do not have LoS unless they are within 1 stick of the stealthy model"
+        },
+        {
+            "id": "good-shot",
+            "name": "Good Shot",
+            "effect": "+1 to FP rolls"
+        }
+    ],
+    "spells": [
+        {
+            "id": "fear",
+            "name": "Fear",
+            "type": "attack",
+            "effect": "Each enemy model within 1 stick who loses its opposed Will roll must move 1 stick away from the psychic.",
+            "pts": 1
+        },
+        {
+            "id": "healing",
+            "name": "Healing",
+            "type": "effect",
+            "effect": "Each enemy model within 1 stick who loses its opposed Will roll must move 1 stick away from the psychic.",
+            "pts": 1
+        },
+        {
+            "id": "meat-puppet",
+            "name": "Meat Puppet",
+            "type": "effect",
+            "effect": "Return 1 OoA model to the table and place within 1 stick of the psychic. The returned model’s Spd is reduced by 1 (min 1), and rolls with -1DT for all rolls. A model can only be returned to the table once.",
+            "pts": 2
+        },
+        {
+            "id": "mind-control",
+            "name": "Mind Control",
+            "type": "attack",
+            "effect": "ETargeted enemy takes one action of the psychic’s choice.",
+            "pts": 2
+        },
+        {
+            "id": "mind-stab",
+            "name": "Mind Stab",
+            "type": "attack",
+            "effect": "Target 1 enemy model within 1 stick. Roll on Under Fire table +3.",
+            "pts": 3
+        },
+        {
+            "id": "prescience",
+            "name": "Prescience",
+            "type": "effect",
+            "effect": "EChoose any model on the table to either gain +1DT or -1DT for all their actions this round.",
+            "pts": 1
+        },
+        {
+            "id": "telekinesis",
+            "name": "Telekinesis",
+            "type": "either",
+            "effect": "Effect: move 1 obstacle or ally up to 1 stick. Attack: move an enemy 1 stick.",
+            "pts": 1
+        },
+        {
+            "id": "taken",
+            "name": "Teleport",
+            "type": "effect",
+            "effect": "Place the psychic anywhere on the board.",
+            "pts": 1
+        }
+    ],
+    "leader_traits": [
+        {
+            "id": "bounty-hunter",
+            "name": "Bounty Hunter",
+            "effect": "Once per round, when a model from your warband is touching a down or staggered enemy, it can take a Use Item action to make the enemy model out of action."
+        },
+        {
+            "id": "healer",
+            "name": "Healer",
+            "effect": "During the Initiative Phase, one of your models within one stick of your leader may make a free Stand or Recover action with +1DT."
+        },
+        {
+            "id": "majestic",
+            "name": "Majestic",
+            "effect": "Any time one of your warband has to make a Willpower roll, that model may use the Leader’s Willpower instead."
+        },
+        {
+            "id": "monstrous",
+            "name": "Monstrous",
+            "effect": "Non-Leader models must win a Willpower roll vs. your leader to move into contact."
+        },
+        {
+            "id": "political-officer",
+            "name": "Political Officer",
+            "effect": "During the Initiative Phase, before rolling, take one of your Warband within LOS of your leader out of action to make all other models in the Warband ready, remove the broken condition from your warband, and gain +1DT to this Initiative roll."
+        },
+        {
+            "id": "sorcerer",
+            "name": "Sorcerer",
+            "effect": "Psychic Powers actions cost 1 Sorcerer action instead of 2, but may still only use 1 per turn."
+        },
+        {
+            "id": "tactician",
+            "name": "Tactician",
+            "effect": "+1DT to Initiative rolls."
+        }
+    ],
+    "warband_traits": [
+        {
+            "id": "cyborgs",
+            "name": "Cyborgs",
+            "effect": "All members of the Warband can purchase 1 additional piece of equipment."
+        },
+        {
+            "id": "fanatics",
+            "name": "Fanatics",
+            "effect": "Roll Willpower with +1DT for all rolls except Psychic Powers."
+        },
+        {
+            "id": "living-weapons",
+            "name": "Living Weapons",
+            "effect": "Unarmed attacks do not have -1DT to Prowess rolls."
+        },
+        {
+            "id": "heavily-armed",
+            "name": "Heavily Armed",
+            "effect": "All Ranged weapons cost 1 point less."
+        },
+        {
+            "id": "mutants",
+            "name": "Mutants",
+            "effect": "Speed, Claws & Teeth, Horrible Claws & Teeth, and Whip/Tail cost 1 less point."
+        },
+        {
+            "id": "soldiers",
+            "name": "Soldiers",
+            "effect": "Grenades, Heavy Armor, and Medkits may be purchased for free. They still use a model’s equipment slots."
+        },
+        {
+            "id": "undead",
+            "name": "Undead",
+            "effect": "A second staggered condition does not take models in this Warband out of action."
+        }
+    ]
+}

@@ -1,0 +1,812 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/WeirdoRepository",
+    "definitions": {
+        "WeirdoRepository": {
+            "description": "Basic Repository of things in SwordWeirdo or SpaceWeirdo (or an alternative Branch)",
+            "type": "object",
+            "properties": {
+                "version": {
+                    "description": "Basic semver symbol string(Major.Minor.Patch)",
+                    "type": "string",
+                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "this should indicate, that its an SwordWeirdo, SpaceWeirdo or a third party Repositoryfile",
+                    "enum": [
+                        "sword-weirdos",
+                        "space-weirdos",
+                        "third-party"
+                    ]
+                },
+                "$schema": {
+                    "description": "Include this Schmea and still be valid.",
+                    "type": "string"
+                },
+                "stats": {
+                    "$ref": "#/definitions/GenericStats"
+                },
+                "classes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Class"
+                    }
+                },
+                "weapons": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Weapon"
+                    }
+                },
+                "weapon-properties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WeaponProperty"
+                    }
+                },
+                "spells": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Spell"
+                    }
+                },
+                "maneuvers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Maneuver"
+                    }
+                },
+                "leader_traits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LeaderTrait"
+                    }
+                },
+                "warband_traits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WarbandTrait"
+                    }
+                },
+                "global-class-maximum": {
+                    "description": "changes the maximum classes per model (defaults to 1) Not the same as global-class-mod, which adds classes on a global level automaticly.",
+                    "default": "1",
+                    "type": "integer"
+                },
+                "global-stat-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatMod"
+                    }
+                },
+                "global-weapon-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WeaponMod"
+                    }
+                },
+                "global-class-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassMod"
+                    }
+                },
+                "global-pts-mod": {
+                    "ref": "#/definitions/PointsMod"
+                },
+                "global-max-spell-mod": {
+                    "$ref": "#/definitions/MaxSpellsMod"
+                },
+                "global-class-limit-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassLimitMod"
+                    }
+                },
+                "global-purchasable-weapons": {
+                    "description": "indicates, which weapontypes can be used, when this class is chosen. Makes mostly sense, if you forbid every weapontype at the beginning.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PurchasableWeaponMod"
+                    }
+                }
+            },
+            "required": [
+                "leader_traits",
+                "spells",
+                "stats",
+                "type",
+                "version",
+                "weapon-properties",
+                "weapons"
+            ],
+            "title": "WeirdoRepository"
+        },
+        "Class": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "pts": {
+                    "description": "costs, for this class",
+                    "type": "integer"
+                },
+                "limit": {
+                    "description": "maximum number of classes, which can occur in an warband",
+                    "type": "integer"
+                },
+                "effect": {
+                    "$ref": "#/definitions/Effect"
+                },
+                "short-effect": {
+                    "$ref": "#/definitions/ShortEffect"
+                },
+                "maneuver": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IDref"
+                    }
+                },
+                "spells": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IDref"
+                    }
+                },
+                "stat-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatMod"
+                    }
+                },
+                "weapon-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WeaponMod"
+                    }
+                },
+                "class-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassMod"
+                    }
+                },
+                "pts-mod": {
+                    "ref": "#/definitions/PointsMod"
+                },
+                "max-spell-mod": {
+                    "$ref": "#/definitions/MaxSpellsMod"
+                },
+                "class-limit-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassLimitMod"
+                    }
+                },
+                "purchasable-weapons": {
+                    "description": "indicates, which weapontypes can be used, when this class is chosen. Makes mostly sense, if you forbid every weapontype at the beginning.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PurchasableWeaponMod"
+                    }
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name",
+                "pts",
+                "purchasable-weapons"
+            ],
+            "title": "Class"
+        },
+        "LeaderTrait": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "effect": {
+                    "$ref": "#/definitions/Effect"
+                },
+                "short-effect": {
+                    "$ref": "#/definitions/ShortEffect"
+                },
+                "stat-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatMod"
+                    }
+                },
+                "weapon-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WeaponMod"
+                    }
+                },
+                "class-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassMod"
+                    }
+                },
+                "pts-mod": {
+                    "ref": "#/definitions/PointsMod"
+                },
+                "max-spell-mod": {
+                    "$ref": "#/definitions/MaxSpellsMod"
+                },
+                "class-limit-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassLimitMod"
+                    }
+                },
+                "purchasable-weapons": {
+                    "description": "indicates, which weapontypes can be used, when this class is chosen. Makes mostly sense, if you forbid every weapontype at the beginning.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PurchasableWeaponMod"
+                    }
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name"
+            ],
+            "title": "LeaderTrait"
+        },
+        "Maneuver": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "use_when": {
+                    "type": "string"
+                },
+                "effect": {
+                    "$ref": "#/definitions/Effect"
+                },
+                "universal": {
+                    "description": "when this is true, every model should be able to use this",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name",
+                "use_when"
+            ],
+            "title": "Maneuver"
+        },
+        "WeaponProperty": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "effect": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name"
+            ],
+            "title": "WeaponProperty"
+        },
+        "Spell": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "effect": {
+                    "$ref": "#/definitions/Effect"
+                },
+                "pts": {
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "#/definitions/OptionalSpellType"
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name",
+                "pts"
+            ],
+            "title": "Spell"
+        },
+        "Weapon": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Value of the weapon. (For space weirdos only ranged and melee)",
+                    "examples": [
+                        "ranged",
+                        "melee",
+                        "simple",
+                        "material",
+                        "shields",
+                        "natural",
+                        "magical",
+                        "equipment"
+                    ]
+                },
+                "hands": {
+                    "$ref": "#/definitions/Hands"
+                },
+                "stat-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatMod"
+                    }
+                },
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IDref"
+                    }
+                },
+                "maneuver": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IDref"
+                    }
+                },
+                "pts": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "type",
+                "properties",
+                "pts"
+            ],
+            "title": "Weapon"
+        },
+        "GenericStats": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/definitions/Id",
+                        "examples": [
+                            "speed",
+                            "willpower",
+                            "defense",
+                            "might",
+                            "prowess",
+                            "firepower"
+                        ]
+                    },
+                    "name": {
+                        "$ref": "#/definitions/Name",
+                        "examples": [
+                            "Speed",
+                            "Willpower",
+                            "Defense",
+                            "Might",
+                            "Prowess",
+                            "Firepower"
+                        ]
+                    },
+                    "levels": {
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/definitions/NumericalTypeStat"
+                                },
+                                {
+                                    "$ref": "#/definitions/DiceTypeStat"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DiceTypeStat": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "level": {
+                    "description": "Since dice expressions are hard to handle and we need some kind of level anyway (or in the future a numerical value) this is the way to go for referencing.",
+                    "type": "integer"
+                },
+                "dice": {
+                    "type": "string",
+                    "description": "Displayed Value of a dice stat. Should be something like 2d6 but can realy be anything."
+                },
+                "pts": {
+                    "type": "integer"
+                },
+                "restriction": {
+                    "description": "if true, this stat can not be picked by default (needs an active override from stat-mod",
+                    "type": "boolean",
+                    "default": "false"
+                }
+            },
+            "required": [
+                "dice",
+                "level",
+                "pts"
+            ],
+            "title": "DiceTypeStat"
+        },
+        "NumericalTypeStat": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "level": {
+                    "type": "integer"
+                },
+                "pts": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "level",
+                "pts"
+            ],
+            "title": "NumericalTypeStat"
+        },
+        "WarbandTrait": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/Id"
+                },
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "effect": {
+                    "$ref": "#/definitions/Effect"
+                },
+                "short-effect": {
+                    "$ref": "#/definitions/ShortEffect"
+                },
+                "global-class-maximum": {
+                    "description": "changes the maximum classes per model (defaults to 1) Not the same as global-class-mod, which adds classes on a global level automaticly.",
+                    "default": "1",
+                    "type": "integer"
+                },
+                "global-stat-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatMod"
+                    }
+                },
+                "global-weapon-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WeaponMod"
+                    }
+                },
+                "global-class-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassMod"
+                    }
+                },
+                "global-pts-mod": {
+                    "ref": "#/definitions/PointsMod"
+                },
+                "global-max-spell-mod": {
+                    "$ref": "#/definitions/MaxSpellsMod"
+                },
+                "global-class-limit-mod": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClassLimitMod"
+                    }
+                },
+                "global-purchasable-weapons": {
+                    "description": "indicates, which weapontypes can be used, when this class is chosen. Makes mostly sense, if you forbid every weapontype at the beginning.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PurchasableWeaponMod"
+                    }
+                }
+            },
+            "required": [
+                "effect",
+                "id",
+                "name"
+            ],
+            "title": "WarbandTrait"
+        },
+        "StatMod": {
+            "type": "object",
+            "description": "modifies the level of an Status (dis or enable it)",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "description": "id of the stat to modify",
+                    "type": "string",
+                    "enum": [
+                        "speed",
+                        "willpower",
+                        "defense",
+                        "firepower",
+                        "prowess",
+                        "might"
+                    ]
+                },
+                "enable-level": {
+                    "description": "enable the given level of the status",
+                    "type": "integer"
+                },
+                "disable-level": {
+                    "description": "disable the given level of the status",
+                    "type": "integer"
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "enable-level"
+                    ],
+                    "not": {
+                        "required": [
+                            "disable-level"
+                        ]
+                    }
+                },
+                {
+                    "required": [
+                        "disable-level"
+                    ],
+                    "not": {
+                        "required": [
+                            "enable-level"
+                        ]
+                    }
+                }
+            ],
+            "additionalProperties": false,
+            "title": "StatMod"
+        },
+        "WeaponMod": {
+            "type": "object",
+            "description": "Modificator to modify used weapons (for example a bows gain quick) ",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "description": "ID of the Weapon to modify",
+                    "type": "string"
+                },
+                "add-prop": {
+                    "description": "add the given property to the weapontype given with name",
+                    "type": "string"
+                },
+                "del-prop": {
+                    "description": "delete the given property to the weapontype given with name",
+                    "type": "string"
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "add-prop"
+                    ],
+                    "not": {
+                        "required": [
+                            "del-prop"
+                        ]
+                    }
+                },
+                {
+                    "required": [
+                        "del-prop"
+                    ],
+                    "not": {
+                        "required": [
+                            "add-prop"
+                        ]
+                    }
+                }
+            ],
+            "additionalProperties": false
+        },
+        "ClassMod": {
+            "type": "object",
+            "description": "Modificator to modify classes of the current model or globally",
+            "required": [
+                "name",
+                "action"
+            ],
+            "properties": {
+                "name": {
+                    "description": "ID of the class to modify (may also be * globally)",
+                    "type": "string"
+                },
+                "action": {
+                    "description": "modifys the given Class. If add is specified, the class is added, if remove is chosen, the class is removed",
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "PointsMod": {
+            "type": "string",
+            "description": "Formular, which can modify the Point Value of the current Model(or globally). This model is represented as x in the formular. "
+        },
+        "MaxSpellsMod": {
+            "description": "indicates that if not 0 Spells may be picked and what max costs they may have.",
+            "type": "integer",
+            "default": 0
+        },
+        "ClassLimitMod": {
+            "description": "Modification to the limitations of picking classes.",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "max-of-class"
+                    ],
+                    "properties": {
+                        "name": {
+                            "description": "Name of the class to modify. This may also be * which expresses, that every class gets the Modification described.",
+                            "type": "string"
+                        },
+                        "max-of-class": {
+                            "description": "math formular, which expresses the value of a class, where x is represented as the current max of the current class. If ",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "tag"
+                    ],
+                    "properties": {
+                        "name": {
+                            "description": "Name of the class to modify. This may also be * which expresses, that every class gets the Modification described.",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "tag, which enables special features. for-free enables the given class to cost no points, must-be-half-in-warband ensures, that half of the members (rounded up) must be the given class",
+                            "enum": [
+                                "must-be-half-in-warband"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "tag"
+                    ],
+                    "properties": {
+                        "tag": {
+                            "type": "string",
+                            "description": "Tag, which ensures that the lease can pick everything, this is an edgecase, where you want to restrict beforehand what classes may be chosen. But the Leader can pick everything. must-share-one-class enables, that every model shares the same class with other ones. ",
+                            "enum": [
+                                "leader-can-pick-everthing",
+                                "must-share-one-class"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ],
+            "title": "ClassLimitMod"
+        },
+        "PurchasableWeaponMod": {
+            "type": "object",
+            "description": "Element to add a weapontype on global warband level",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "description": "reference of the Weapon or null",
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "remove"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "action"
+            ],
+            "title": "PurchasableWeaponMod"
+        },
+        "Id": {
+            "description": "unique identifier which is used to easy reference the target.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-]*"
+        },
+        "Name": {
+            "description": "Readable name of an entity. May contain spaces and everything. Should be explainable itself",
+            "type": "string"
+        },
+        "Effect": {
+            "description": "Complete Effect, also with values, which could be given in values listed in this json(like 'bows get quick' would still stand in here.)",
+            "type": "string"
+        },
+        "ShortEffect": {
+            "description": "Short Effect, which does not contain information, which could be expressed in this json. If not specified it has the same value as effect",
+            "type": "string"
+        },
+        "IDref": {
+            "description": "references an entity with an id. May also be * which is an placeholder for everything.",
+            "type": "string"
+        },
+        "Hands": {
+            "type": "integer",
+            "title": "Hands",
+            "default": 1
+        },
+        "OptionalSpellType": {
+            "description": "an optional spell type, which is currently only used in space-weirdos. Because of this we added an not-defined for sword-weirdos",
+            "type": "string",
+            "enum": [
+                "attack",
+                "effect",
+                "either",
+                "not-defined"
+            ],
+            "title": "OptionalSpellType"
+        }
+    }
+}
