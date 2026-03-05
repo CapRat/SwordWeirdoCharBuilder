@@ -2,7 +2,7 @@
 Generate your unique Sword Weirdos warband with this fun and easy-to-use generator! Customize your squad's members, weapons, and special traits to create a quirky and powerful team ready for battle. Use the playground listed below to build your warband and use it in battle!
 
 > [!WARNING] 
-> This tool is still in Alpha Version (below 1.0.0)!! This means there are still some bugs and stuff is not as pretty as it can be. There should be a list below, which lists the not working features yet (bugs are not included). I would welcome your help and write down bug reports to improge this application
+> This tool is still in Alpha Version (below 1.0.0)!! This means there are still some bugs and stuff is not as pretty as it can be. There should be a list below, which lists the not working features yet (bugs are not included). I would welcome your help and write down bug reports to improge this application. It may be still out soon.
 
 ## ❗️ Important Links
 
