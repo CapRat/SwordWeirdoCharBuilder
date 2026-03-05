@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import Warband from "@/model/Warband";
-const warbandModel = defineModel<Warband>()
+const warbandModel = defineModel<Warband>();
 
 import { useSwordWeirdosRepo } from '@/stores/swordWeirdosRepo';
-import { usePaperizer } from 'paperizer'
+import { usePaperizer } from 'paperizer';
 
-const { paperize } = usePaperizer('toPrint',{
+const swordWeirdoRepo = useSwordWeirdosRepo();
+
+const { paperize } = usePaperizer('toPrint', {
   styles: [
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
   ]
-})
-
-const swordWeirdoRepo = useSwordWeirdosRepo()
+});
 
 function removeDoublesFromIDObj(objArray: { id: String }[]) {
   var availableIds: String[] = []
   var filteredAllProps = []
   for (const obj of objArray) {
+    console.log(obj)
     if (!availableIds.find(x => obj.id == x)) {
       availableIds.push(obj.id)
       filteredAllProps.push(obj)
@@ -24,9 +25,11 @@ function removeDoublesFromIDObj(objArray: { id: String }[]) {
   }
   return filteredAllProps
 }
+
 function getAllUsedClasses() {
   return removeDoublesFromIDObj(warbandModel.value.entities.reduce((accumulator, entity) => [...accumulator, ...(entity.getComputedClasses().map(classID => swordWeirdoRepo.getClassWithID(classID)))], []))
 }
+
 function getAllSpellsUsedSpells() {
   return removeDoublesFromIDObj(warbandModel.value.entities.reduce((accumulator, entity) => [...accumulator, ...(entity.getComputedSpells())], []))
 }
@@ -44,119 +47,152 @@ function getAllUsedWeaponProperties() {
   return removeDoublesFromIDObj(allProps)
 }
 
-import { ref } from "vue";
-
-import { useVueToPrint } from "vue-to-print";
-const printSection = ref();
-function mapStatValueToDiceName(statName, statValue){
-  return swordWeirdoRepo.stats[statName?.toLocaleLowerCase()].filter(val=>val.level===statValue)[0].dice
-}
-const { handlePrint } = useVueToPrint({
-  content: printSection,
-  documentTitle: "WarbandSheet",
-  removeAfterPrint: true
-});
-
-function printVueToPrint() {
-  console.log("Printing")
-  handlePrint()
+function mapStatValueToDiceName(statName: string, statValue: number) {
+  return swordWeirdoRepo.stats[statName?.toLowerCase()].filter(val => val.level === statValue)[0].dice;
 }
 
-function print(){
-  console.log("Printing")
-  paperize() // Paperize
-  //handlePrint() // vuetoprint
+function print() {
+  paperize();
+//handlePrint() // vuetoprint
 }
 
-defineExpose({
-  print
-})
+defineExpose({ print });
 </script>
 
 <template>
-  <v-container>
-    
-    <v-container class="text-body-2 pa-0 ma-0" id="toPrint">
-      <v-table density="compact">
-        <thead>
-          <tr>
-            <th class="text-left">Name</th>
-            <th width="5">Spd</th>
-            <th width="5">Mgt</th>
-            <th width="5">Def</th>
-            <th width="5">Wp</th>
-            <th>Classes</th>
-            <th>Weapons</th>
-            <th>Spells</th>
-            <th width="1">Leader Trait</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ma-0 pa-0" v-for="item in warbandModel?.entities">
-            <td >{{ item.name }}({{ item.getPoints() }})</td>
-            <td >{{ item.speedLevel }}</td>
-            <td >{{ mapStatValueToDiceName("might", item.mightLevel) }}</td>
-            <td >{{ mapStatValueToDiceName("defense", item.defenseLevel )}}</td>
-            <td >{{ mapStatValueToDiceName("willpower", item.willpowerLevel) }}</td>
-            <td> {{item.getComputedClasses().map((str) => {
-              return swordWeirdoRepo.getClassWithID(str)?.name
-            }).toString()
-              }}</td>
-            <td class="ma-0 pa-0">
-              <v-list density="compact" class="ma-0 pa-0">
-                <v-list-item v-for="weapon in item.getComputedWeapons()" class="ma-0 pa-0">
-                  <v-list-item-subtitle class="ma-0 pa-0">
-                    <v-card class="ma-0 pa-0">{{weapon?.name + (item.getComputedProperty(weapon).length==0?"":" ["+ item.getComputedProperty(weapon).map(x=>x.name).join(', ') +"]")+(item.getComputedManeuver(weapon).length==0?"":" ("+item.getComputedManeuver(weapon).map(man=>man?.name).join(", ") +")" )}}</v-card>
-                  </v-list-item-subtitle>
-                </v-list-item>
-              </v-list>
-            </td>
-            <td>{{ item.getComputedSpells().map(spell => spell?.name).join(", ") }}
-            </td>
-            <td>
-              <v-card variant="flat" >
-              <u><strong>{{ swordWeirdoRepo.getLeaderTraitWithID(item.leaderTrait)?.name }}</strong></u>
-              {{ swordWeirdoRepo.getLeaderTraitWithID(item.leaderTrait)?.effect }}
-            </v-card></td>
-          </tr>
-        </tbody>
-      </v-table>
+  <v-container id="toPrint" class="p-3">
+    <h2 class="mb-3">Warband Sheet: {{ warbandModel.name || 'Unnamed Warband' }}</h2>
 
+    <table class="table table-bordered table-sm">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Spd</th>
+          <th>Mgt</th>
+          <th>Def</th>
+          <th>Wp</th>
+          <th>Classes</th>
+          <th>Weapons</th>
+          <th>Spells</th>
+          <th>Leader Trait</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in warbandModel?.entities" :key="item.name">
+          <td>{{ item.name }} ({{ item.getPoints() }})</td>
+          <td>{{ item.speedLevel }}</td>
+          <td>{{ mapStatValueToDiceName('might', item.mightLevel) }}</td>
+          <td>{{ mapStatValueToDiceName('defense', item.defenseLevel) }}</td>
+          <td>{{ mapStatValueToDiceName('willpower', item.willpowerLevel) }}</td>
+          <td>{{ item.getComputedClasses().map(str => swordWeirdoRepo.getClassWithID(str)?.name).join(', ') }}</td>
+          <td>
+            <ul class="list-unstyled mb-0">
+              <li v-for="weapon in item.getComputedWeapons()" :key="weapon.name">
+                {{ weapon.name }}
+                <span v-if="item.getComputedProperty(weapon).length">[{{ item.getComputedProperty(weapon).map(x => x.name).join(', ') }}]</span>
+                <span v-if="item.getComputedManeuver(weapon).length">({{ item.getComputedManeuver(weapon).map(m => m?.name).join(', ') }})</span>
+              </li>
+            </ul>
+          </td>
+          <td>{{ item.getComputedSpells().map(spell => spell?.name).join(', ') }}</td>
+          <td>
+            <strong>{{ swordWeirdoRepo.getLeaderTraitWithID(item.leaderTrait)?.name }}</strong><br>
+            {{ swordWeirdoRepo.getLeaderTraitWithID(item.leaderTrait)?.effect }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <v-col>
-        <v-row>
-          <v-card variant="flat"  title="Classes" :width="getAllSpellsUsedSpells().length==0?'50%':'33%'" class="overflow-visible">
-            <v-list class="overflow-visible" density="compact">
-              <v-list-item class="textwrap" v-for="item in getAllUsedClasses()">
-                <v-list-item-title v-text="item.name"></v-list-item-title>
-                <v-list-item-subtitle><v-card>{{ item.effect }}</v-card></v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-card>
-          <v-card v-if="getAllSpellsUsedSpells().length!=0" variant="flat" title="Spells" width="33%">
-            <v-list density="compact">
-              <v-list-item class="overflow-visible" v-for="item in getAllSpellsUsedSpells()">
-                <v-list-item-title v-text="item.name"></v-list-item-title>
-                <v-list-item-subtitle><v-card>{{ item.effect }}</v-card></v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-card>
-          <v-card variant="flat" title="Weapon Properties" :width="getAllSpellsUsedSpells().length==0?'50%':'34%'">
-            <v-list density="compact">
-              <v-list-item class="overflow-visible" v-for="item in getAllUsedWeaponProperties()">
-                <v-list-item-title v-text="item.name"></v-list-item-title>
-                <v-list-item-subtitle height="100"
-                  class="text-wrap"><v-card>{{ item.effect }}</v-card></v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-card>
-        </v-row>
-      </v-col>
-      Total Points: {{ warbandModel.entities.map((entity) => entity.getPoints()).reduce((x, y) => x + y, 0) }}
-    </v-container>
+    <div class="row mt-4">
+      <div class="col-md-4" v-if="getAllUsedClasses().length">
+        <h5>Classes</h5>
+        <ul class="list-unstyled">
+          <li v-for="cls in getAllUsedClasses()" :key="cls.id">
+            <strong>{{ cls.name }}</strong>: {{ cls.effect }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4" v-if="getAllSpellsUsedSpells().length">
+        <h5>Spells</h5>
+        <ul class="list-unstyled">
+          <li v-for="spell in getAllSpellsUsedSpells()" :key="spell.id">
+            <strong>{{ spell.name }}</strong>: {{ spell.effect }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4" v-if="getAllUsedWeaponProperties().length">
+        <h5>Weapon Properties</h5>
+        <ul class="list-unstyled">
+          <li v-for="prop in getAllUsedWeaponProperties()" :key="prop.id">
+            <strong>{{ prop.name }}</strong>: {{ prop.effect }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <strong>Total Points:</strong> {{ warbandModel.entities.reduce((sum, e) => sum + e.getPoints(), 0) }}
+    </div>
   </v-container>
 </template>
 
 <style>
+/* ================== Alle Druck-Stile ================== */
+@media print {
+  /* Seiten-Einstellungen */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
 
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 12pt;
+  }
+
+  /* UI-Elemente ausblenden */
+  .v-app-bar, .v-btn, .v-footer, .v-navigation-drawer {
+    display: none !important;
+  }
+
+  /* Druckbereich */
+  #toPrint {
+    background: white !important;
+    color: black !important;
+    width: 210mm;
+    margin: 0 auto;
+    padding: 10mm;
+  }
+
+  /* Tabellen */
+  table {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+    background: white !important;
+  }
+
+  th, td {
+    border: 1px solid black !important;
+    padding: 4px !important;
+    text-align: left;
+    color: black !important;
+  }
+
+  ul {
+    padding-left: 15px !important;
+    margin: 0 !important;
+  }
+
+  h2, h5, strong {
+    color: black !important;
+    page-break-inside: avoid;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+  }
+}
 </style>
