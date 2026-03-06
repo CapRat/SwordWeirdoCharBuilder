@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://caprat.github.io/SwordWeirdoWarbandBuilder/sitemap.xml
