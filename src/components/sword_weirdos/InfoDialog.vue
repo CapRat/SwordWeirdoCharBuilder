@@ -19,7 +19,7 @@
      
         <v-card-text>
           This is a generator to generate Warbands for Sword-Weirdos. Its still in its alpha version and lacks in some points. If you want to contribute or report some bugs, this would be verymuch supported.
-          Also if you want to know more about the Ruleset or other features visit the <a target="_blank" rel="noopener noreferrer" href="https://github.com/CapRat/SwordWeirdoCharBuilder/">github site</a>
+          Also if you want to know more about the Ruleset or other features visit the <a target="_blank" rel="noopener noreferrer" href="https://github.com/CapRat/SwordWeirdoWarbandBuilder/">github site</a>
 
         </v-card-text>
         <v-card-text>

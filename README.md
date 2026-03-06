@@ -6,10 +6,10 @@ Generate your unique Sword Weirdos warband with this fun and easy-to-use generat
 
 ## ❗️ Important Links
 
-- 📄 [Docs](https://github.com/CapRat/SwordWeirdoCharBuilder/wiki)
-- 🚨 [Issues](https://github.com/CapRat/SwordWeirdoCharBuilder/issues)
+- 📄 [Docs](https://github.com/CapRat/SwordWeirdoWarbandBuilder/wiki)
+- 🚨 [Issues](https://github.com/CapRat/SwordWeirdoWarbandBuilder/issues)
 - 🏬 [Buy the Game](https://www.wargamevault.com/product/437324/Sword-Weirdos?term=sword+wei)
-- 🎮 [Hosted](https://caprat.github.io/SwordWeirdoCharBuilder/)
+- 🎮 [Hosted](https://caprat.github.io/SwordWeirdoWarbandBuilder/)
 
 ## ✨ Features
 - dynamic Warband generaton
