@@ -144,7 +144,8 @@ export default class WarbandEntity {
     }
 
     public getMaxClasses() {
-        var maxClasses = this.isPowerful ? 2 : 1
+        var maxClasses = this.isPowerful || this.isLeader ? 2 : 1
+        
         var maxClassMod = this.getModifiers().classMax
         if (maxClassMod != undefined) {
             maxClasses = maxClassMod

@@ -28,8 +28,8 @@ let swordRepo = useSwordWeirdosRepo()
         <WarbandEntityClassPicker  :max-number-of-classes="warbandEntityModel.getMaxClasses()" v-model="warbandEntityModel.classes" :classes-which-may-not-be-selected="warbandEntityModel.containingWarband?.getClassesToIgnore(warbandEntityModel.isLeader)" ></WarbandEntityClassPicker>
         <WarbandEntityWeaponPicker :weaponProfiencies="warbandEntityModel.getModifiers().weaponProfiencies" :additional-weapons="warbandEntityModel.getModifiers().weaponMod" v-model="warbandEntityModel.weapons"></WarbandEntityWeaponPicker>
         <WarbandEntitySpellPicker :max-spell-cost="warbandEntityModel.getMaxSpellNumber()" :modifier="warbandEntityModel.getModifiers().spells" v-model="warbandEntityModel.spells"></WarbandEntitySpellPicker>
-        <v-switch color="primary" label="Powerful" v-model="warbandEntityModel.isPowerful"></v-switch>
-        <v-switch color="primary" label="Leader" v-model="warbandEntityModel.isLeader"></v-switch>
+        <v-switch :disabled="warbandEntityModel.isLeader" color="primary" label="Powerful" v-model="warbandEntityModel.isPowerful"></v-switch>
+        <v-switch :disabled="warbandEntityModel.isPowerful" color="primary" label="Leader" v-model="warbandEntityModel.isLeader"></v-switch>
         <v-select color="primary" v-if="warbandEntityModel.isLeader" label="Leadertraits" variant="underlined" v-model="warbandEntityModel.leaderTrait"
             :items="swordRepo.leader_traits" item-title="name" item-value="id" </v-select>
     </v-container>
