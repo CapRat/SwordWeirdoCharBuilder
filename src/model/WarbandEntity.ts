@@ -79,7 +79,7 @@ export default class WarbandEntity {
         return cost
     }
 
-    private getModifierFromObject(obj: any,skipManeuverModifier=false) {
+    private getModifierFromObject(obj: any, skipManeuverModifier = false) {
         var modifiers = new WarbandEntityModifiers()
 
         if (obj == undefined) return modifiers
@@ -138,7 +138,7 @@ export default class WarbandEntity {
             modifiers.append(this.getModifierFromObject(swordRepo.getClassWithID(classId)))
         }
         for (const weaponId of this.weapons) {
-            modifiers.append(this.getModifierFromObject(swordRepo.getWeaponWithID(weaponId),true))
+            modifiers.append(this.getModifierFromObject(swordRepo.getWeaponWithID(weaponId), true))
         }
         return modifiers
     }
@@ -157,14 +157,14 @@ export default class WarbandEntity {
     public getComputedSpells() {
         return [...this.spells, ...(this.getModifiers().spells)].map(spellID => swordRepo.getSpellWithID(spellID))
     }
- 
-    
+
+
     public getComputedWeapons() {
-        return this.weapons.map(id=> swordRepo.getWeaponWithID(id))
-        
+        return this.weapons.map(id => swordRepo.getWeaponWithID(id))
+
     }
 
-    public getComputedProperty(weapon){
+    public getComputedProperty(weapon) {
         var properties = [...weapon.properties]
         const mods = this.getModifiers()
         for (const weaponMod of mods.weaponMod) {
@@ -174,16 +174,16 @@ export default class WarbandEntity {
                 }
                 else if (weaponMod.state == WeaponModState.Delete) {
                     const index = weapon?.properties.indexOf(weaponMod.weaponProperty)
-                    if (index != undefined){
+                    if (index != undefined) {
                         properties.splice(index, 1)
                     }
                 }
             }
         }
-        return properties.map(id=> swordRepo.getWeaponsPropertyWithID(id))
+        return properties.map(id => swordRepo.getWeaponsPropertyWithID(id))
     }
-    public getComputedManeuver(weapon){
-        return [...this.getModifiers().maneuver,...weapon.maneuver].map(maneuverID => swordRepo.getManeuverWithID(maneuverID))
+    public getComputedManeuver(weapon) {
+        return [...this.getModifiers().maneuver, ...weapon.maneuver].map(maneuverID => swordRepo.getManeuverWithID(maneuverID))
     }
 
 
@@ -201,6 +201,40 @@ export default class WarbandEntity {
         }
         // update stats, if the where restricted after picking a class.
 
+    }
+    public toJSON() {
+        return {
+            id: this.id,
+            speedLevel: this.speedLevel,
+            mightLevel: this.mightLevel,
+            defenseLevel: this.defenseLevel,
+            willpowerLevel: this.willpowerLevel,
+            name: this.name,
+            isPowerful: this.isPowerful,
+            isLeader: this.isLeader,
+            leaderTrait: this.leaderTrait,
+            classes: [...this.classes],
+            weapons: [...this.weapons],
+            spells: [...this.spells]
+        }
+    }
+    static fromJSON(data: any): WarbandEntity {
+        const entity = new WarbandEntity()
+
+        entity.id = data.id
+        entity.speedLevel = data.speedLevel
+        entity.mightLevel = data.mightLevel
+        entity.defenseLevel = data.defenseLevel
+        entity.willpowerLevel = data.willpowerLevel
+        entity.name = data.name
+        entity.isPowerful = data.isPowerful
+        entity.isLeader = data.isLeader
+        entity.leaderTrait = data.leaderTrait
+        entity.classes = [...data.classes]
+        entity.weapons = [...data.weapons]
+        entity.spells = [...data.spells]
+
+        return entity
     }
 
 }

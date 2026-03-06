@@ -8,12 +8,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    FileUploadDialogue: typeof import('./components/sword_weirdos/FileUploadDialogue.vue')['default']
     InfoDialog: typeof import('./components/sword_weirdos/InfoDialog.vue')['default']
     PrintPreview: typeof import('./components/sword_weirdos/PrintPreview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SwordWeirdoMainWindow: typeof import('./components/sword_weirdos/SwordWeirdoMainWindow.vue')['default']
     SwordWeirdosRepoDialogue: typeof import('./components/sword_weirdos/SwordWeirdosRepoDialogue.vue')['default']
+    UploadDialogue: typeof import('./components/sword_weirdos/UploadDialogue.vue')['default']
     WarbandConfig: typeof import('./components/sword_weirdos/WarbandConfig.vue')['default']
     WarbandEntityClassPicker: typeof import('./components/sword_weirdos/WarbandEntityClassPicker.vue')['default']
     WarbandEntityCofiguration: typeof import('./components/sword_weirdos/WarbandEntityCofiguration.vue')['default']

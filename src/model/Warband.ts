@@ -50,7 +50,7 @@ export default class Warband {
                         if (isLeader)
                             maxLimit = swordRepo.getClassWithID(classID)?.limit
                     }
-                    
+
                 }
             }
         }
@@ -88,13 +88,13 @@ export default class Warband {
                     errors.push("Every model should have one class in common")
                 }
                 if (warbandTrait['class-limit-mod'].some(x => x.tag != undefined && x.tag == "must-be-half-in-warband")) {
-                    var className=warbandTrait['class-limit-mod'].find(x=> x.tag != undefined && x.tag == "must-be-half-in-warband" && x.name!=undefined)?.name
+                    var className = warbandTrait['class-limit-mod'].find(x => x.tag != undefined && x.tag == "must-be-half-in-warband" && x.name != undefined)?.name
                     var counter = 0
                     for (const entity of this.entities) {
                         if (entity.classes.some(c => c == className)) { counter++ }
                     }
                     if (counter < this.entities.length / 2) {
-                        errors.push("Half of the Classes in Warband must be "+ className)
+                        errors.push("Half of the Classes in Warband must be " + className)
                     }
                 }
             }
@@ -103,19 +103,19 @@ export default class Warband {
         if (this.points < this.getAllUsedPoints()) {
             errors.push("Pointlimit reached!")
         }
-        const maxPointsPerEntity=25
-        for(const entity of this.entities){
-            if(entity.isPowerful){
-                if(entity.getPoints()> maxPointsPerEntity*2){
-                    errors.push("Error " + entity.name +" has to many Points!")
+        const maxPointsPerEntity = 25
+        for (const entity of this.entities) {
+            if (entity.isPowerful) {
+                if (entity.getPoints() > maxPointsPerEntity * 2) {
+                    errors.push("Error " + entity.name + " has to many Points!")
                 }
             }
-            else{
-                if(entity.getPoints()> maxPointsPerEntity){
-                    errors.push("Error " + entity.name +" has to many Points!")
+            else {
+                if (entity.getPoints() > maxPointsPerEntity) {
+                    errors.push("Error " + entity.name + " has to many Points!")
                 }
             }
-            
+
         }
         return errors
     }
@@ -123,5 +123,29 @@ export default class Warband {
     public getWarnings(): string[] {
         var warnings: string[] = []
         return warnings
+    }
+    public toJSON() {
+        return {
+            name: this.name,
+            warbandTrait: this.warbandTrait,
+            points: this.points,
+            entities: this.entities.map(e => e.toJSON())
+        }
+
+    }
+    static fromJSON(data: any): Warband {
+        const warband = new Warband()
+
+        warband.name = data.name
+        warband.warbandTrait = data.warbandTrait
+        warband.points = data.points
+
+        warband.entities = data.entities.map(e => {
+            const entity = WarbandEntity.fromJSON(e)
+            entity.containingWarband = warband
+            return entity
+        })
+
+        return warband
     }
 }
