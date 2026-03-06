@@ -2,7 +2,6 @@
 import WarbandEntityPreview from '@/components/sword_weirdos/WarbandEntityList.vue';
 import PrintPreview from '@/components/sword_weirdos/PrintPreview.vue';
 import WarbandConfig from '@/components/sword_weirdos/WarbandConfig.vue';
-import SwordWeirdosRepoDialogue from '@/components/sword_weirdos/SwordWeirdosRepoDialogue.vue';
 import InfoDialog from '@/components/sword_weirdos/InfoDialog.vue';
 import WarbandEntity from '@/model/WarbandEntity';
 import Warband from '@/model/Warband';
@@ -38,7 +37,6 @@ function stringifyWarband(): undefined | string {
   return JSON.stringify(warbandModel.value.toJSON())
 }
 function getCurrentWarbandDownloadName(): string {
-  console.log (warbandModel.value)
   return (warbandModel.value.name ===""? "unnamed":warbandModel.value.name)+ "-Warband.json"
 }
 
@@ -62,7 +60,7 @@ function loadWarband(content: string) {
 function loadRepo(content: string) {
   try {
     swordWeirdoRepo.updateSwordWeirdoRepo(content)
-    console.log("Repo geladen", json)
+    console.log("Repo geladen", content)
 
   } catch (err) {
     console.error("Ungültige JSON Datei", err)
@@ -119,7 +117,7 @@ function download(filename, text) {
           </v-list-item>
           <v-list-item>
             <v-btn text="Download Ruleset"
-              @click="download('CurrentSwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())" />
+              @click="download('CurrentSXXwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())" />
           </v-list-item>
           <v-list-item>
             <InfoDialog> </InfoDialog>
