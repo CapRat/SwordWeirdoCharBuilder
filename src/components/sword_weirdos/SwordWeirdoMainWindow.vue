@@ -92,9 +92,9 @@ function download(filename, text) {
 
     <v-app-bar-title> <v-btn variant="plain" href="https://www.drivethrurpg.com/en/product/437324/sword-weirdos">
         Sword-Weirdos Generator</v-btn></v-app-bar-title>
- <!-- <template v-slot:prepend>
+  <template v-slot:prepend>
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
-  </template>-->
+  </template>
     <template v-slot:append>
       <v-btn v-if="preview" icon="mdi-printer" @click="callPrint()"></v-btn>
       <v-btn @click="preview = !preview" icon="mdi-eye" :color="preview ? 'primary' : ''"></v-btn>
@@ -117,7 +117,7 @@ function download(filename, text) {
           </v-list-item>
           <v-list-item>
             <v-btn text="Download Ruleset"
-              @click="download('CurrentSXXwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())" />
+              @click="download('CurrentSwordWeirdoRuleSet.json', swordWeirdoRepo.getCurrentStoreAsString())" />
           </v-list-item>
           <v-list-item>
             <InfoDialog> </InfoDialog>

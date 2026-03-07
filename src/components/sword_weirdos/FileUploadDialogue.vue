@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits, defineProps, watch } from "vue";
+import { ref, watch } from "vue";
 
 // Props für alle Texte & Optionen
 const props = defineProps<{
